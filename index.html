@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Florália Atelier | Arranjos Florais Autorais</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              offwhite: '#FAF7F2',
+              beige: '#E9E1D5',
+              olive: '#69725A',
+              deepgreen: '#303A30',
+              gold: '#D4AF57',
+              brown: '#8A7563',
+              rose: '#EBC7C6',
+              text: '#292923'
+            }
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Montserrat"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body {
+      background-color: #FAF7F2;
+      color: #292923;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .font-serif {
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .gold-border {
+      border: 1px solid #D4AF57;
+    }
+    .gold-gradient-bg {
+      background: linear-gradient(135deg, #FAF7F2 0%, #E9E1D5 100%);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-brand-gold selection:text-white">
+
+  <!-- HEADER / NAVIGATION -->
+  <header class="sticky top-0 z-40 bg-brand-offwhite/90 backdrop-blur-md border-b border-brand-beige/60 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <a href="#" class="flex items-center space-x-3 group">
+        <div class="w-10 h-10 rounded-full border border-brand-gold flex items-center justify-center bg-brand-offwhite text-brand-gold font-serif font-bold text-lg group-hover:bg-brand-gold group-hover:text-white transition-all">
+          FA
+        </div>
+        <div class="flex flex-col">
+          <span class="font-serif text-xl sm:text-2xl font-bold tracking-wider text-brand-deepgreen uppercase leading-none">Florália Atelier</span>
+          <span class="text-[9px] sm:text-[10px] tracking-widest text-brand-brown uppercase mt-1">Design Floral Autoral</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide text-brand-text">
+        <a href="#inicio" class="hover:text-brand-gold transition-colors">Início</a>
+        <a href="#portfolio" class="hover:text-brand-gold transition-colors">Portfólio</a>
+        <a href="#sobre" class="hover:text-brand-gold transition-colors">Sobre</a>
+        <a href="#videos" class="hover:text-brand-gold transition-colors">Vídeos</a>
+        <a href="#contato" class="hover:text-brand-gold transition-colors">Contato</a>
+      </nav>
+
+      <!-- CTA & Admin -->
+      <div class="hidden md:flex items-center space-x-4">
+        <button onclick="openWhatsAppModal()" class="border border-brand-gold text-brand-deepgreen px-5 py-2.5 rounded-full text-xs uppercase tracking-widest hover:bg-brand-gold hover:text-white transition-all shadow-sm">
+          Solicitar Orçamento
+        </button>
+        <button onclick="toggleAdminModal()" class="text-brand-brown hover:text-brand-deepgreen p-2 text-lg" title="Painel Administrativo">
+          <i class="ph ph-user-gear"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="flex md:hidden items-center space-x-2">
+        <button onclick="toggleAdminModal()" class="text-brand-brown hover:text-brand-deepgreen p-2 text-xl" title="Painel Administrativo">
+          <i class="ph ph-user-gear"></i>
+        </button>
+        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-brand-deepgreen p-2 text-2xl focus:outline-none">
+          <i class="ph ph-list" id="menu-icon"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden bg-brand-offwhite border-b border-brand-beige px-4 pt-2 pb-6 space-y-4 shadow-lg">
+      <a href="#inicio" onclick="toggleMobileMenu()" class="block text-brand-text hover:text-brand-gold font-medium">Início</a>
+      <a href="#portfolio" onclick="toggleMobileMenu()" class="block text-brand-text hover:text-brand-gold font-medium">Portfólio</a>
+      <a href="#sobre" onclick="toggleMobileMenu()" class="block text-brand-text hover:text-brand-gold font-medium">Sobre</a>
+      <a href="#videos" onclick="toggleMobileMenu()" class="block text-brand-text hover:text-brand-gold font-medium">Vídeos</a>
+      <a href="#contato" onclick="toggleMobileMenu()" class="block text-brand-text hover:text-brand-gold font-medium">Contato</a>
+      <button onclick="openWhatsAppModal(); toggleMobileMenu();" class="w-full text-center border border-brand-gold text-brand-deepgreen px-4 py-2.5 rounded-full text-xs uppercase tracking-widest hover:bg-brand-gold hover:text-white transition-all">
+        Solicitar Orçamento
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-12 px-4 sm:px-6 lg:px-8 gold-gradient-bg">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Text Content -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left z-10">
+          <div class="inline-flex items-center space-x-2 border-b border-brand-gold pb-1">
+            <i class="ph ph-flower-tulip text-brand-gold text-lg"></i>
+            <span class="text-xs uppercase tracking-widest text-brand-brown font-medium">Alta Cordoaria Floral</span>
+          </div>
+          
+          <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-normal text-brand-deepgreen leading-tight">
+            A arte de transformar flores em <span class="italic font-light text-brand-gold">decoração</span>.
+          </h1>
+          
+          <p class="text-brand-text/80 text-base sm:text-lg max-w-2xl font-light leading-relaxed mx-auto lg:mx-0">
+            Arranjos que unem formas, cores e texturas para criar composições únicas e dar vida aos ambientes.
+          </p>
+
+          <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <a href="#portfolio" class="w-full sm:w-auto bg-brand-deepgreen text-brand-offwhite px-8 py-3.5 rounded-full text-xs uppercase tracking-widest hover:bg-brand-olive transition-all shadow-md text-center">
+              Conheça Meus Trabalhos
+            </a>
+            <button onclick="openWhatsAppModal()" class="w-full sm:w-auto border border-brand-gold text-brand-deepgreen px-8 py-3.5 rounded-full text-xs uppercase tracking-widest hover:bg-brand-gold hover:text-white transition-all text-center">
+              Solicite um Orçamento
+            </button>
+          </div>
+        </div>
+
+        <!-- Featured Image -->
+        <div class="lg:col-span-5 relative flex justify-center">
+          <div class="relative w-full max-w-md aspect-[4/5] rounded-t-full p-2 border border-brand-gold/40 shadow-xl bg-white/50 backdrop-blur-sm">
+            <img id="hero-img" src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=800&q=80" alt="Arranjo Floral Autoral - Florália Atelier" class="w-full h-full object-cover rounded-t-full shadow-inner">
+            <div class="absolute -bottom-4 -left-4 bg-brand-offwhite p-4 rounded-lg shadow-lg border border-brand-beige hidden sm:block">
+              <p class="font-serif italic text-brand-deepgreen text-lg">"Exclusividade & Cuidado Artesanal"</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- APRESENTAÇÃO -->
+    <section class="py-20 bg-brand-offwhite border-y border-brand-beige/50">
+      <div class="max-w-4xl mx-auto px-4 text-center space-y-6">
+        <span class="text-brand-gold uppercase text-xs tracking-widest font-semibold">Filosofia de Design</span>
+        <h2 class="font-serif text-3xl sm:text-5xl text-brand-deepgreen">Beleza que floresce nos detalhes.</h2>
+        <div class="w-12 h-0.5 bg-brand-gold mx-auto"></div>
+        <p class="text-brand-text/80 text-base sm:text-lg font-light leading-relaxed">
+          Cada arranjo é pensado para criar harmonia entre flores, folhagens, vasos e elementos decorativos. Composições que valorizam os ambientes e transformam detalhes em pontos de destaque.
+        </p>
+      </div>
+    </section>
+
+    <!-- PORTFÓLIO / GALERIA -->
+    <section id="portfolio" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center space-y-4 mb-12">
+        <span class="text-brand-gold uppercase text-xs tracking-widest font-semibold">Catálogo Exclusivo</span>
+        <h2 class="font-serif text-4xl sm:text-5xl text-brand-deepgreen">Composições que encantam</h2>
+        <p class="text-brand-brown text-sm max-w-xl mx-auto">Navegue pelas nossas criações autorais registradas em fotografias reais.</p>
+      </div>
+
+      <!-- Categories Filter -->
+      <div id="category-filters" class="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mb-12">
+        <button onclick="filterCategory('all')" class="cat-btn active bg-brand-deepgreen text-white px-5 py-2 rounded-full text-xs uppercase tracking-wider transition-all">Todas</button>
+        <button onclick="filterCategory('Orquídeas e composições tropicais')" class="cat-btn bg-white border border-brand-beige text-brand-text px-5 py-2 rounded-full text-xs uppercase tracking-wider hover:border-brand-gold transition-all">Orquídeas & Tropicais</button>
+        <button onclick="filterCategory('Arranjos contemporâneos')" class="cat-btn bg-white border border-brand-beige text-brand-text px-5 py-2 rounded-full text-xs uppercase tracking-wider hover:border-brand-gold transition-all">Contemporâneos</button>
+        <button onclick="filterCategory('Suculentas e folhagens decorativas')" class="cat-btn bg-white border border-brand-beige text-brand-text px-5 py-2 rounded-full text-xs uppercase tracking-wider hover:border-brand-gold transition-all">Suculentas & Folhagens</button>
+      </div>
+
+      <!-- Grid Portfolio -->
+      <div id="portfolio-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Renderizado dinamicamente via JS -->
+      </div>
+    </section>
+
+    <!-- SOBRE O TRABALHO -->
+    <section id="sobre" class="py-20 bg-brand-beige/30 border-y border-brand-beige">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="space-y-6">
+            <span class="text-brand-gold uppercase text-xs tracking-widest font-semibold">Ateliê Autoral</span>
+            <h2 class="font-serif text-3xl sm:text-5xl text-brand-deepgreen">Criatividade em cada composição.</h2>
+            <p class="text-brand-text/80 text-base leading-relaxed font-light">
+              Meu trabalho nasce da combinação entre flores, folhagens, cores e vasos decorativos. Cada composição busca equilíbrio, personalidade e harmonia, valorizando os detalhes que tornam cada arranjo especial.
+            </p>
+            <p class="text-brand-text/80 text-base leading-relaxed font-light">
+              Trabalhamos estritamente sob encomenda e projetos personalizados, garantindo o máximo frescor e alinhamento com a arquitetura de interiores do seu ambiente.
+            </p>
+            <div class="pt-4 border-t border-brand-beige/80 grid grid-cols-2 gap-4 text-center">
+              <div class="p-4 bg-brand-offwhite rounded-lg shadow-sm">
+                <span class="block font-serif text-2xl text-brand-gold font-bold">100%</span>
+                <span class="text-xs uppercase text-brand-brown">Peças Autorais</span>
+              </div>
+              <div class="p-4 bg-brand-offwhite rounded-lg shadow-sm">
+                <span class="block font-serif text-2xl text-brand-gold font-bold">Sob Medida</span>
+                <span class="text-xs uppercase text-brand-brown">Projetos Exclusivos</span>
+              </div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=600&q=80" alt="Processo Criativo Floral" class="rounded-lg object-cover h-64 w-full shadow-md">
+            <img src="https://images.unsplash.com/photo-1508610048659-a06b669e3321?auto=format&fit=crop&w=600&q=80" alt="Detalhes do Arranjo" class="rounded-lg object-cover h-64 w-full shadow-md mt-8">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERIA DE VÍDEOS -->
+    <section id="videos" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center space-y-4 mb-12">
+        <span class="text-brand-gold uppercase text-xs tracking-widest font-semibold">Experiência Imersiva</span>
+        <h2 class="font-serif text-4xl sm:text-5xl text-brand-deepgreen">De perto, cada detalhe.</h2>
+        <p class="text-brand-brown text-sm max-w-xl mx-auto">Acompanhe a textura, movimento e o acabamento dos nossos arranjos em vídeo.</p>
+      </div>
+
+      <div id="video-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Renderizado via JS -->
+      </div>
+    </section>
+
+    <!-- CONTATO / ORÇAMENTO -->
+    <section id="contato" class="py-20 bg-brand-deepgreen text-brand-offwhite relative overflow-hidden">
+      <div class="max-w-4xl mx-auto px-4 relative z-10 text-center space-y-8">
+        <div class="space-y-4">
+          <span class="text-brand-gold uppercase text-xs tracking-widest font-semibold">Atendimento Exclusivo</span>
+          <h2 class="font-serif text-4xl sm:text-5xl">Vamos encontrar o arranjo ideal para seu espaço?</h2>
+          <p class="text-brand-beige/80 text-base max-w-xl mx-auto font-light">
+            Entre em contato para conhecer as peças, consultar disponibilidade ou conversar sobre uma composição personalizada.
+          </p>
+        </div>
+
+        <!-- Form Whatsapp Sync -->
+        <form id="whatsapp-form" onsubmit="handleContactSubmit(event)" class="bg-white/5 p-6 sm:p-10 rounded-2xl backdrop-blur-md border border-brand-gold/20 text-left space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs uppercase tracking-wider text-brand-beige mb-2">Seu Nome *</label>
+              <input type="text" id="form-name" required placeholder="Digite seu nome completo" class="w-full bg-brand-offwhite/10 border border-brand-beige/20 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-brand-gold">
+            </div>
+            <div>
+              <label class="block text-xs uppercase tracking-wider text-brand-beige mb-2">Peça de Interesse</label>
+              <input type="text" id="form-piece" placeholder="Ex: Essência Branca ou Projeto Sob Medida" class="w-full bg-brand-offwhite/10 border border-brand-beige/20 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-brand-gold">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-wider text-brand-beige mb-2">Mensagem *</label>
+            <textarea id="form-message" rows="4" required placeholder="Conte-nos detalhes sobre o ambiente ou dúvida sobre o arranjo..." class="w-full bg-brand-offwhite/10 border border-brand-beige/20 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-brand-gold"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-brand-gold text-brand-deepgreen font-semibold py-4 rounded-lg uppercase tracking-widest text-xs hover:bg-white transition-all shadow-lg flex items-center justify-center space-x-2">
+            <i class="ph ph-whatsapp-logo text-lg"></i>
+            <span>Enviar Solicitação via WhatsApp</span>
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer class="bg-brand-offwhite border-t border-brand-beige py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      <div class="flex items-center space-x-3">
+        <div class="w-8 h-8 rounded-full border border-brand-gold flex items-center justify-center bg-brand-offwhite text-brand-gold font-serif font-bold text-sm">
+          FA
+        </div>
+        <span class="font-serif text-lg font-bold text-brand-deepgreen uppercase tracking-wider">Florália Atelier</span>
+      </div>
+
+      <div class="flex space-x-6 text-sm text-brand-text/80">
+        <a href="#inicio" class="hover:text-brand-gold">Início</a>
+        <a href="#portfolio" class="hover:text-brand-gold">Portfólio</a>
+        <a href="#sobre" class="hover:text-brand-gold">Sobre</a>
+        <a href="#contato" class="hover:text-brand-gold">Contato</a>
+      </div>
+
+      <div class="flex items-center space-x-4">
+        <a id="footer-instagram" href="https://instagram.com" target="_blank" class="text-brand-deepgreen hover:text-brand-gold text-xl" title="Instagram">
+          <i class="ph ph-instagram-logo"></i>
+        </a>
+        <a id="footer-whatsapp" href="#" onclick="openWhatsAppModal()" class="text-brand-deepgreen hover:text-brand-gold text-xl" title="WhatsApp">
+          <i class="ph ph-whatsapp-logo"></i>
+        </a>
+      </div>
+    </div>
+    
+    <div class="mt-8 text-center text-xs text-brand-brown">
+      &copy; <span id="current-year"></span> Florália Atelier. Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <!-- MODAL DETALHES DA PEÇA -->
+  <div id="piece-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-brand-offwhite w-full max-w-3xl rounded-2xl overflow-hidden shadow-2xl border border-brand-gold/30 max-h-[90vh] flex flex-col md:flex-row">
+      <div class="md:w-1/2 relative bg-black/5 flex items-center justify-center">
+        <img id="modal-img" src="" alt="" class="w-full h-full object-cover max-h-[350px] md:max-h-none">
+      </div>
+      <div class="md:w-1/2 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto">
+        <div>
+          <div class="flex justify-between items-start">
+            <span id="modal-category" class="text-xs uppercase tracking-widest text-brand-gold font-semibold"></span>
+            <button onclick="closePieceModal()" class="text-brand-brown hover:text-brand-deepgreen text-xl"><i class="ph ph-x"></i></button>
+          </div>
+          <h3 id="modal-title" class="font-serif text-3xl text-brand-deepgreen mt-1"></h3>
+          <p id="modal-desc" class="text-brand-text/80 text-sm mt-4 font-light leading-relaxed"></p>
+
+          <div class="mt-6 space-y-2 border-t border-brand-beige pt-4 text-xs text-brand-brown">
+            <div id="modal-dimensions-container" class="hidden"><strong>Dimensões:</strong> <span id="modal-dimensions"></span></div>
+            <div id="modal-materials-container" class="hidden"><strong>Materiais:</strong> <span id="modal-materials"></span></div>
+            <div id="modal-price-container" class="hidden"><strong>Valor Ref.:</strong> <span id="modal-price" class="text-brand-deepgreen font-semibold"></span></div>
+          </div>
+        </div>
+
+        <div class="mt-8">
+          <button id="modal-whatsapp-btn" class="w-full bg-brand-deepgreen text-white py-3 rounded-full text-xs uppercase tracking-widest hover:bg-brand-olive transition-all flex items-center justify-center space-x-2">
+            <i class="ph ph-whatsapp-logo text-lg"></i>
+            <span>Consultar Disponibilidade</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL ADMIN / PAINEL ADMINISTRATIVO -->
+  <div id="admin-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-brand-offwhite w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl border border-brand-gold flex flex-col max-h-[90vh]">
+      
+      <!-- Admin Header -->
+      <div class="bg-brand-deepgreen px-6 py-4 text-white flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <i class="ph ph-sliders text-brand-gold text-xl"></i>
+          <h3 class="font-serif text-xl">Painel Administrativo — Florália Atelier</h3>
+        </div>
+        <button onclick="toggleAdminModal()" class="text-white/70 hover:text-white text-2xl"><i class="ph ph-x"></i></button>
+      </div>
+
+      <!-- Auth State or Dashboard -->
+      <div id="admin-login-view" class="p-8 max-w-md mx-auto w-full text-center space-y-4">
+        <i class="ph ph-lock-key text-4xl text-brand-gold"></i>
+        <h4 class="font-serif text-2xl text-brand-deepgreen">Acesso Restrito</h4>
+        <p class="text-xs text-brand-brown">Digite a senha administrativa para gerenciar arranjos e conteúdos do site.</p>
+        <input type="password" id="admin-pass" placeholder="Senha do Administrador" class="w-full border border-brand-beige rounded-lg px-4 py-3 focus:outline-none focus:border-brand-gold">
+        <button onclick="authenticateAdmin()" class="w-full bg-brand-deepgreen text-white py-3 rounded-lg text-xs uppercase tracking-widest hover:bg-brand-olive transition-all">Entrar no Painel</button>
+      </div>
+
+      <!-- Admin Panel Dashboard (Oculto antes do Login) -->
+      <div id="admin-dashboard-view" class="hidden flex-1 overflow-y-auto p-6 space-y-8">
+        
+        <!-- Stats Bar -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="bg-white p-4 rounded-xl border border-brand-beige text-center">
+            <span class="text-xs text-brand-brown uppercase">Total de Arranjos</span>
+            <p id="stat-arranjos" class="font-serif text-3xl font-bold text-brand-deepgreen">0</p>
+          </div>
+          <div class="bg-white p-4 rounded-xl border border-brand-beige text-center">
+            <span class="text-xs text-brand-brown uppercase">Categorias</span>
+            <p id="stat-categorias" class="font-serif text-3xl font-bold text-brand-gold">3</p>
+          </div>
+          <div class="bg-white p-4 rounded-xl border border-brand-beige text-center">
+            <span class="text-xs text-brand-brown uppercase">Vídeos</span>
+            <p id="stat-videos" class="font-serif text-3xl font-bold text-brand-deepgreen">0</p>
+          </div>
+        </div>
+
+        <!-- Add New Piece Form -->
+        <div class="bg-white p-6 rounded-xl border border-brand-beige space-y-4">
+          <h4 class="font-serif text-2xl text-brand-deepgreen flex items-center space-x-2">
+            <i class="ph ph-plus-circle text-brand-gold"></i>
+            <span>Cadastrar Novo Arranjo</span>
+          </h4>
+          
+          <form onsubmit="handleSavePiece(event)" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs uppercase text-brand-brown mb-1">Nome Artístico *</label>
+                <input type="text" id="piece-name" required placeholder="Ex: Essência Branca" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs uppercase text-brand-brown mb-1">Categoria *</label>
+                <select id="piece-category" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm">
+                  <option>Orquídeas e composições tropicais</option>
+                  <option>Arranjos contemporâneos</option>
+                  <option>Suculentas e folhagens decorativas</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs uppercase text-brand-brown mb-1">Descrição</label>
+              <textarea id="piece-desc" rows="2" placeholder="Descreva os detalhes e a inspiração da peça..." class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm"></textarea>
+            </div>
+
+            <!-- Upload de Imagem/Câmera -->
+            <div>
+              <label class="block text-xs uppercase text-brand-brown mb-1">Fotografia do Arranjo (Escolher arquivo ou Foto pelo Telemóvel)</label>
+              <input type="file" id="piece-file" accept="image/*" capture="environment" onchange="previewImageUpload(event)" class="w-full text-xs text-brand-brown">
+              <input type="text" id="piece-img-url" placeholder="Ou cole a URL da Imagem" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm mt-2">
+              <div id="img-preview" class="mt-2 hidden">
+                <img id="preview-src" src="" alt="Pré-visualização" class="h-24 rounded border border-brand-beige object-cover">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs uppercase text-brand-brown mb-1">Dimensões (Opcional)</label>
+                <input type="text" id="piece-dim" placeholder="Ex: 45cm x 30cm" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs uppercase text-brand-brown mb-1">Materiais (Opcional)</label>
+                <input type="text" id="piece-mat" placeholder="Ex: Vaso Cerâmica, Orquídea" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs uppercase text-brand-brown mb-1">Preço (Opcional)</label>
+                <input type="text" id="piece-price" placeholder="Ex: R$ 350,00" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm">
+              </div>
+            </div>
+
+            <button type="submit" class="bg-brand-deepgreen text-white px-6 py-2.5 rounded-lg text-xs uppercase tracking-widest hover:bg-brand-olive transition-all">
+              Salvar Arranjo
+            </button>
+          </form>
+        </div>
+
+        <!-- Manage Items Table -->
+        <div class="bg-white p-6 rounded-xl border border-brand-beige space-y-4">
+          <h4 class="font-serif text-2xl text-brand-deepgreen">Peças Cadastradas</h4>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-brand-offwhite text-brand-brown uppercase">
+                <tr>
+                  <th class="p-3">Foto</th>
+                  <th class="p-3">Nome</th>
+                  <th class="p-3">Categoria</th>
+                  <th class="p-3">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="admin-pieces-list" class="divide-y divide-brand-beige">
+                <!-- Render via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- System Sync & Settings -->
+        <div class="bg-white p-6 rounded-xl border border-brand-beige space-y-4">
+          <h4 class="font-serif text-2xl text-brand-deepgreen">Configurações da Marca & WhatsApp</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs uppercase text-brand-brown mb-1">Número do WhatsApp (Com DDD)</label>
+              <input type="text" id="config-phone" value="5511999999999" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm">
+            </div>
+            <div>
+              <label class="block text-xs uppercase text-brand-brown mb-1">Instagram (@usuario)</label>
+              <input type="text" id="config-insta" value="floralia.atelier" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm">
+            </div>
+          </div>
+          <button onclick="saveSettings()" class="bg-brand-gold text-brand-deepgreen px-6 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-widest hover:bg-brand-deepgreen hover:text-white transition-all">
+            Atualizar Informações
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT / STATE MANAGEMENT -->
+  <script>
+    // Initial State / Mock Data
+    const defaultPieces = [
+      {
+        id: 1,
+        name: "Essência Branca",
+        category: "Orquídeas e composições tropicais",
+        desc: "Composição elegante de orquídeas Phalaenopsis em vaso de cerâmica artesanal de tom neutro.",
+        img: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=800&q=80",
+        dimensions: "50cm x 30cm",
+        materials: "Orquídeas Naturais, Cerâmica, Casca de Pinus",
+        price: "Sob Consulta"
+      },
+      {
+        id: 2,
+        name: "Elegância Tropical",
+        category: "Orquídeas e composições tropicais",
+        desc: "Design assimétrico combinando folhagens exuberantes e detalhes botânicos dourados.",
+        img: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=800&q=80",
+        dimensions: "60cm x 40cm",
+        materials: "Folhagens Tropicais, Vaso Dourado",
+        price: "Sob Consulta"
+      },
+      {
+        id: 3,
+        name: "Jardim Contemporâneo",
+        category: "Arranjos contemporâneos",
+        desc: "Arranjo moderno com linhas limpas e mistura sutil de secos e frescos.",
+        img: "https://images.unsplash.com/photo-1508610048659-a06b669e3321?auto=format&fit=crop&w=800&q=80",
+        dimensions: "40cm x 25cm",
+        materials: "Flores Nobres, Vidro Lapidado",
+        price: "Sob Consulta"
+      }
+    ];
+
+    const defaultVideos = [
+      {
+        id: 1,
+        title: "Texturas e Acabamentos",
+        desc: "Acompanhe de perto os detalhes da montagem de um arranjo de orquídeas autorais.",
+        url: "https://www.w3schools.com/html/mov_bbb.mp4"
+      }
+    ];
+
+    // Load Local Data
+    let pieces = JSON.parse(localStorage.getItem('floralia_pieces')) || defaultPieces;
+    let videos = JSON.parse(localStorage.getItem('floralia_videos')) || defaultVideos;
+    let config = JSON.parse(localStorage.getItem('floralia_config')) || { phone: '5511999999999', insta: 'floralia.atelier' };
+    let isAdminLoggedIn = false;
+
+    // DOM Ready Initialization
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+      renderPortfolio('all');
+      renderVideos();
+      updateStats();
+    });
+
+    // Render Portfolio
+    function renderPortfolio(filterCategoryName = 'all') {
+      const grid = document.getElementById('portfolio-grid');
+      grid.innerHTML = '';
+
+      const filtered = filterCategoryName === 'all' 
+        ? pieces 
+        : pieces.filter(p => p.category === filterCategoryName);
+
+      filtered.forEach(piece => {
+        const card = document.createElement('div');
+        card.className = 'group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-brand-beige/60 flex flex-col justify-between';
+        card.innerHTML = `
+          <div>
+            <div class="relative aspect-[4/5] overflow-hidden bg-brand-beige/20">
+              <img src="${piece.img}" alt="${piece.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-3 left-3 bg-brand-offwhite/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] uppercase tracking-wider text-brand-deepgreen font-medium">
+                ${piece.category}
+              </span>
+            </div>
+            <div class="p-6 space-y-2">
+              <h3 class="font-serif text-2xl text-brand-deepgreen group-hover:text-brand-gold transition-colors">${piece.name}</h3>
+              <p class="text-brand-text/70 text-xs line-clamp-2 leading-relaxed font-light">${piece.desc}</p>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <button onclick="openPieceModal(${piece.id})" class="w-full border border-brand-gold text-brand-deepgreen text-xs uppercase tracking-widest py-2.5 rounded-full hover:bg-brand-gold hover:text-white transition-all">
+              Ver Detalhes
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Filter Categories
+    function filterCategory(catName) {
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.classList.remove('bg-brand-deepgreen', 'text-white');
+        btn.classList.add('bg-white', 'text-brand-text');
+      });
+      event.target.classList.add('bg-brand-deepgreen', 'text-white');
+      renderPortfolio(catName);
+    }
+
+    // Render Videos
+    function renderVideos() {
+      const container = document.getElementById('video-grid');
+      container.innerHTML = '';
+
+      videos.forEach(vid => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-2xl overflow-hidden border border-brand-beige shadow-sm space-y-4 p-4';
+        card.innerHTML = `
+          <div class="aspect-video bg-black rounded-xl overflow-hidden">
+            <video controls class="w-full h-full object-cover">
+              <source src="${vid.url}" type="video/mp4">
+              Seu navegador não suporta reprodução de vídeos.
+            </video>
+          </div>
+          <div>
+            <h3 class="font-serif text-xl text-brand-deepgreen">${vid.title}</h3>
+            <p class="text-xs text-brand-brown mt-1">${vid.desc}</p>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Modal Details View
+    function openPieceModal(id) {
+      const item = pieces.find(p => p.id === id);
+      if(!item) return;
+
+      document.getElementById('modal-img').src = item.img;
+      document.getElementById('modal-title').textContent = item.name;
+      document.getElementById('modal-category').textContent = item.category;
+      document.getElementById('modal-desc').textContent = item.desc;
+
+      // Optional fields
+      toggleOptionalField('modal-dimensions', item.dimensions);
+      toggleOptionalField('modal-materials', item.materials);
+      toggleOptionalField('modal-price', item.price);
+
+      const whatsappBtn = document.getElementById('modal-whatsapp-btn');
+      whatsappBtn.onclick = () => {
+        const msg = encodeURIComponent(`Olá! Gostaria de consultar detalhes e disponibilidade sobre a peça autoral "${item.name}".`);
+        window.open(`https://wa.me/${config.phone}?text=${msg}`, '_blank');
+      };
+
+      document.getElementById('piece-modal').classList.remove('hidden');
+    }
+
+    function toggleOptionalField(elementId, value) {
+      const el = document.getElementById(elementId);
+      const container = document.getElementById(`${elementId}-container`);
+      if(value && value.trim() !== '') {
+        el.textContent = value;
+        container.classList.remove('hidden');
+      } else {
+        container.classList.add('hidden');
+      }
+    }
+
+    function closePieceModal() {
+      document.getElementById('piece-modal').classList.add('hidden');
+    }
+
+    // WhatsApp Contact Form Action
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('form-name').value;
+      const piece = document.getElementById('form-piece').value;
+      const message = document.getElementById('form-message').value;
+
+      let text = `Olá, meu nome é ${name}.`;
+      if(piece) text += ` Tenho interesse na peça/projeto: ${piece}.`;
+      text += ` Mensagem: ${message}`;
+
+      window.open(`https://wa.me/${config.phone}?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    function openWhatsAppModal() {
+      window.open(`https://wa.me/${config.phone}?text=${encodeURIComponent('Olá! Gostaria de solicitar um orçamento para um arranjo autoral.')}`, '_blank');
+    }
+
+    // Mobile Menu Toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    // Admin Panel Logic
+    function toggleAdminModal() {
+      const modal = document.getElementById('admin-modal');
+      modal.classList.toggle('hidden');
+    }
+
+    function authenticateAdmin() {
+      const pass = document.getElementById('admin-pass').value;
+      if(pass === 'floralia123') { // Senha padrão
+        isAdminLoggedIn = true;
+        document.getElementById('admin-login-view').classList.add('hidden');
+        document.getElementById('admin-dashboard-view').classList.remove('hidden');
+        renderAdminPiecesTable();
+      } else {
+        alert('Senha incorreta! Tente novamente.');
+      }
+    }
+
+    function previewImageUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('preview-src').src = e.target.result;
+          document.getElementById('img-preview').classList.remove('hidden');
+          document.getElementById('piece-img-url').value = e.target.result; // Base64 storage locally
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function handleSavePiece(e) {
+      e.preventDefault();
+      const name = document.getElementById('piece-name').value;
+      const category = document.getElementById('piece-category').value;
+      const desc = document.getElementById('piece-desc').value;
+      const img = document.getElementById('piece-img-url').value || 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=800&q=80';
+      const dimensions = document.getElementById('piece-dim').value;
+      const materials = document.getElementById('piece-mat').value;
+      const price = document.getElementById('piece-price').value;
+
+      const newPiece = {
+        id: Date.now(),
+        name, category, desc, img, dimensions, materials, price
+      };
+
+      pieces.push(newPiece);
+      localStorage.setItem('floralia_pieces', JSON.stringify(pieces));
+      
+      alert('Arranjo cadastrado com sucesso!');
+      renderPortfolio();
+      renderAdminPiecesTable();
+      updateStats();
+      e.target.reset();
+      document.getElementById('img-preview').classList.add('hidden');
+    }
+
+    function renderAdminPiecesTable() {
+      const list = document.getElementById('admin-pieces-list');
+      list.innerHTML = '';
+
+      pieces.forEach(p => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="p-3"><img src="${p.img}" class="w-10 h-10 object-cover rounded border"></td>
+          <td class="p-3 font-semibold text-brand-deepgreen">${p.name}</td>
+          <td class="p-3">${p.category}</td>
+          <td class="p-3 space-x-2">
+            <button onclick="deletePiece(${p.id})" class="text-red-600 hover:text-red-800"><i class="ph ph-trash"></i> Excluir</button>
+          </td>
+        `;
+        list.appendChild(tr);
+      });
+    }
+
+    function deletePiece(id) {
+      if(confirm('Tem certeza de que deseja remover esta peça?')) {
+        pieces = pieces.filter(p => p.id !== id);
+        localStorage.setItem('floralia_pieces', JSON.stringify(pieces));
+        renderPortfolio();
+        renderAdminPiecesTable();
+        updateStats();
+      }
+    }
+
+    function saveSettings() {
+      config.phone = document.getElementById('config-phone').value;
+      config.insta = document.getElementById('config-insta').value;
+      localStorage.setItem('floralia_config', JSON.stringify(config));
+      alert('Configurações salvas com sucesso!');
+    }
+
+    function updateStats() {
+      document.getElementById('stat-arranjos').textContent = pieces.length;
+      document.getElementById('stat-videos').textContent = videos.length;
+    }
+  </script>
+</body>
+</html>
