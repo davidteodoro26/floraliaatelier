@@ -61,7 +61,7 @@
   <header class="sticky top-0 z-40 bg-brand-offwhite/90 backdrop-blur-md border-b border-brand-beige/60 transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
-      <!-- LOGO (CLIQUE DUPLO NO ÍCONE DE FLOR ABRE O ADM NO TELEMÓVEL) -->
+      <!-- LOGO (DUPLO CLIQUE ABRE O PAINEL ADM) -->
       <a href="#" class="flex items-center space-x-3 group" ondblclick="openAdminModal()">
         <div class="w-10 h-10 rounded-full border border-brand-gold flex items-center justify-center bg-brand-offwhite text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-white transition-all shadow-sm">
           <i class="ph ph-flower-tulip"></i>
@@ -72,7 +72,6 @@
         </div>
       </a>
 
-      <!-- MENU PÚBLICO -->
       <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide text-brand-text">
         <a href="#inicio" class="hover:text-brand-gold transition-colors">Início</a>
         <a href="#portfolio" class="hover:text-brand-gold transition-colors">Portfólio</a>
@@ -94,7 +93,6 @@
       </div>
     </div>
 
-    <!-- MOBILE MENU -->
     <div id="mobile-menu" class="hidden md:hidden bg-brand-offwhite border-b border-brand-beige px-4 pt-2 pb-6 space-y-4 shadow-lg">
       <a href="#inicio" onclick="toggleMobileMenu()" class="block text-brand-text hover:text-brand-gold font-medium">Início</a>
       <a href="#portfolio" onclick="toggleMobileMenu()" class="block text-brand-text hover:text-brand-gold font-medium">Portfólio</a>
@@ -164,25 +162,18 @@
     <section id="sobre" class="py-20 bg-brand-beige/30 border-y border-brand-beige">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
           <div class="lg:col-span-5 relative flex justify-center">
             <div class="relative w-full max-w-md aspect-[4/5] rounded-2xl overflow-hidden border-2 border-brand-gold p-2 bg-brand-offwhite shadow-xl">
               <img id="about-artist-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" alt="Florália Atelier" class="w-full h-full object-cover rounded-xl shadow-inner">
             </div>
           </div>
-
           <div class="lg:col-span-7 space-y-6 text-left">
             <span class="text-brand-gold uppercase text-xs tracking-widest font-semibold">Ateliê Autoral</span>
-            <h2 class="font-serif text-3xl sm:text-5xl text-brand-deepgreen">Ozana Teodoro</h2>
+            <h2 class="font-serif text-3xl sm:text-5xl text-brand-deepgreen">Sobre O Nosso Ateliê</h2>
             <div class="w-16 h-0.5 bg-brand-gold"></div>
-            
             <p class="text-brand-text/80 text-base leading-relaxed font-light">
               Meu trabalho nasce da paixão pela combinação única entre flores, folhagens, cores e vasos decorativos. Cada arranjo autoral é pensado individualmente para criar equilíbrio, personalidade e harmonia nos mais diversos ambientes.
             </p>
-            <p class="text-brand-text/80 text-base leading-relaxed font-light">
-              Priorizo o cuidado artesanal em cada detalhe, desde a seleção das espécies até o acabamento final. Trabalhamos exclusivamente sob encomenda para garantir frescor, elegância e um toque verdadeiramente exclusivo para o seu espaço.
-            </p>
-
             <div class="pt-4">
               <button onclick="openGeneralWhatsApp()" class="bg-brand-deepgreen text-white px-8 py-3 rounded-full text-xs uppercase tracking-widest hover:bg-brand-olive transition-all flex items-center space-x-2">
                 <i class="ph ph-whatsapp-logo text-lg"></i>
@@ -190,7 +181,6 @@
               </button>
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -201,9 +191,7 @@
         <div class="space-y-3">
           <span class="text-brand-gold uppercase text-xs tracking-widest font-semibold">Atendimento Direto</span>
           <h2 class="font-serif text-4xl sm:text-5xl">Vamos encontrar o arranjo ideal para seu espaço?</h2>
-          <p class="text-brand-beige/80 text-sm max-w-xl mx-auto font-light">Preencha as informações abaixo para ser direcionado ao WhatsApp com o seu pedido já formatado.</p>
         </div>
-
         <form onsubmit="handleContactSubmit(event)" class="bg-white/5 p-6 sm:p-10 rounded-2xl border border-brand-gold/20 text-left space-y-6">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
@@ -237,19 +225,11 @@
         </div>
         <span class="font-serif text-lg font-bold text-brand-deepgreen uppercase tracking-wider">Florália Atelier</span>
       </div>
-
       <div class="flex space-x-6 text-xs uppercase tracking-wider text-brand-text/80">
         <a href="#inicio" class="hover:text-brand-gold">Início</a>
         <a href="#portfolio" class="hover:text-brand-gold">Portfólio</a>
         <a href="#sobre" class="hover:text-brand-gold">Sobre</a>
         <a href="#contato" class="hover:text-brand-gold">Contato</a>
-      </div>
-
-      <div>
-        <button onclick="openGeneralWhatsApp()" class="flex items-center space-x-2 text-brand-deepgreen hover:text-brand-gold transition-colors font-medium text-xs uppercase tracking-widest">
-          <i class="ph ph-whatsapp-logo text-xl text-brand-gold"></i>
-          <span>WhatsApp Ateliê</span>
-        </button>
       </div>
     </div>
     <div class="mt-8 text-center text-xs text-brand-brown">
@@ -257,13 +237,20 @@
     </div>
   </footer>
 
-  <!-- MODAL DETALHES -->
+  <!-- MODAL DETALHES (COM SUPORTE A GALERIA E VÍDEO) -->
   <div id="piece-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-brand-offwhite w-full max-w-3xl rounded-2xl overflow-hidden shadow-2xl border border-brand-gold/30 max-h-[90vh] flex flex-col md:flex-row">
-      <div class="md:w-1/2 relative bg-black/5 flex items-center justify-center">
-        <img id="modal-img" src="" class="w-full h-full object-cover">
+    <div class="bg-brand-offwhite w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl border border-brand-gold/30 max-h-[90vh] flex flex-col md:flex-row">
+      <div class="md:w-1/2 p-4 bg-black/5 flex flex-col justify-center space-y-4">
+        <!-- Imagem Principal / Ativa -->
+        <div class="relative aspect-[4/5] rounded-xl overflow-hidden border">
+          <img id="modal-img" src="" class="w-full h-full object-cover">
+        </div>
+        <!-- Miniaturas / Vídeo na Modal -->
+        <div id="modal-media-gallery" class="flex gap-2 overflow-x-auto pb-2">
+          <!-- Preenchido via JS -->
+        </div>
       </div>
-      <div class="md:w-1/2 p-6 sm:p-8 flex flex-col justify-between">
+      <div class="md:w-1/2 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto">
         <div>
           <div class="flex justify-between items-start">
             <span id="modal-category" class="text-xs uppercase tracking-widest text-brand-gold font-semibold"></span>
@@ -280,7 +267,7 @@
     </div>
   </div>
 
-  <!-- PAINEL ADMINISTRATIVO PRIVADO -->
+  <!-- PAINEL ADMINISTRATIVO -->
   <div id="admin-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
     <div class="bg-brand-offwhite w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl border border-brand-gold flex flex-col max-h-[90vh]">
       
@@ -292,7 +279,6 @@
         <button onclick="closeAdminModal()" class="text-white/70 hover:text-white text-2xl"><i class="ph ph-x"></i></button>
       </div>
 
-      <!-- TELA DE LOGIN PRIVADA -->
       <div id="admin-login-view" class="p-8 max-w-md mx-auto w-full text-center space-y-4">
         <i class="ph ph-shield-check text-4xl text-brand-gold"></i>
         <h4 class="font-serif text-2xl text-brand-deepgreen">Autenticação do Proprietário</h4>
@@ -300,7 +286,6 @@
         <button onclick="authenticateAdmin()" class="w-full bg-brand-deepgreen text-white py-3 rounded-lg text-xs uppercase tracking-widest hover:bg-brand-olive transition-all">Entrar no Painel</button>
       </div>
 
-      <!-- PAINEL PRIVADO -->
       <div id="admin-dashboard-view" class="hidden flex-1 overflow-y-auto p-6 space-y-8">
         
         <!-- INTEGRACAO SUPABASE -->
@@ -324,7 +309,7 @@
           </button>
         </div>
 
-        <!-- FORMULÁRIO ARRANJO (CADASTRAR / EDITAR) -->
+        <!-- FORMULÁRIO ARRANJO (COM MÚLTIPLAS FOTOS E VÍDEO) -->
         <div class="bg-white p-6 rounded-xl border border-brand-beige space-y-4">
           <div class="flex justify-between items-center">
             <h4 id="form-title" class="font-serif text-2xl text-brand-deepgreen">Cadastrar Novo Arranjo</h4>
@@ -355,9 +340,21 @@
             </div>
 
             <div>
-              <label class="block text-xs uppercase text-brand-brown mb-1">Foto (Galeria, Arquivos ou Câmara)</label>
-              <input type="file" id="piece-file" accept="image/*" onchange="previewImageUpload(event)" class="w-full text-xs text-brand-brown">
-              <input type="text" id="piece-img-url" placeholder="Ou cole a URL da Imagem" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm mt-2">
+              <label class="block text-xs uppercase text-brand-brown mb-1">Foto Principal / Capa *</label>
+              <input type="file" id="piece-file" accept="image/*" onchange="previewImageUpload(event, 'piece-img-url')" class="w-full text-xs text-brand-brown">
+              <input type="text" id="piece-img-url" required placeholder="URL da Foto Principal" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm mt-2">
+            </div>
+
+            <div>
+              <label class="block text-xs uppercase text-brand-brown mb-1">Fotos Adicionais (Galeria extra)</label>
+              <input type="file" id="piece-extra-file" accept="image/*" multiple onchange="previewExtraImages(event)" class="w-full text-xs text-brand-brown">
+              <textarea id="piece-gallery" rows="2" placeholder="URLs das fotos adicionais separadas por vírgula" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm mt-2"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs uppercase text-brand-brown mb-1">Vídeo do Arranjo (Opcional - Arquivo ou URL do YouTube/Instagram/Vídeo)</label>
+              <input type="file" id="piece-video-file" accept="video/*" onchange="previewVideoUpload(event)" class="w-full text-xs text-brand-brown">
+              <input type="text" id="piece-video-url" placeholder="Ou cole o link do vídeo" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm mt-2">
             </div>
 
             <button type="submit" id="btn-save-piece" class="bg-brand-deepgreen text-white px-6 py-2.5 rounded-lg text-xs uppercase tracking-widest hover:bg-brand-olive transition-all">
@@ -366,13 +363,12 @@
           </form>
         </div>
 
-        <!-- FOTO DO PERFIL / SOBRE (COM CONVERSOR DE FICHEIRO BASE64 INTEGRADOD) -->
+        <!-- FOTO DO PERFIL / SOBRE -->
         <div class="bg-white p-6 rounded-xl border border-brand-beige space-y-4">
           <h4 class="font-serif text-2xl text-brand-deepgreen">Sua Foto de Perfil (Seção Sobre)</h4>
           <div>
-            <label class="block text-xs uppercase text-brand-brown mb-1">Anexar ou Enviar sua Foto</label>
             <input type="file" id="artist-file" accept="image/*" onchange="previewArtistImage(event)" class="w-full text-xs text-brand-brown">
-            <input type="text" id="artist-img-url" placeholder="Ou cole a URL da sua foto" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm mt-2">
+            <input type="text" id="artist-img-url" placeholder="URL da sua foto" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm mt-2">
           </div>
           <button onclick="saveArtistPhoto()" class="bg-brand-gold text-brand-deepgreen px-6 py-2 rounded-lg text-xs font-semibold uppercase tracking-widest hover:bg-brand-deepgreen hover:text-white transition-all">
             Atualizar Minha Foto
@@ -382,28 +378,22 @@
         <!-- CONFIGURAÇÕES DE WHATSAPP -->
         <div class="bg-white p-6 rounded-xl border border-brand-beige space-y-4">
           <h4 class="font-serif text-2xl text-brand-deepgreen">Configuração do Número do WhatsApp</h4>
-          <div>
-            <label class="block text-xs uppercase text-brand-brown mb-1">Número do WhatsApp (com DDD e sem espaços)</label>
-            <input type="text" id="config-phone" placeholder="Ex: 5511999999999" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm">
-          </div>
+          <input type="text" id="config-phone" placeholder="Ex: 5511999999999" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm">
           <button onclick="savePhoneSetting()" class="bg-brand-gold text-brand-deepgreen px-6 py-2 rounded-lg text-xs font-semibold uppercase tracking-widest hover:bg-brand-deepgreen hover:text-white transition-all">
-            Atualizar Número do WhatsApp
+            Atualizar WhatsApp
           </button>
         </div>
 
-        <!-- TROCAR SENHA DO PAINEL ADMINISTRATIVO -->
+        <!-- TROCAR SENHA -->
         <div class="bg-white p-6 rounded-xl border border-brand-beige space-y-4">
           <h4 class="font-serif text-2xl text-brand-deepgreen">Alterar Senha do Administrador</h4>
-          <div>
-            <label class="block text-xs uppercase text-brand-brown mb-1">Nova Senha</label>
-            <input type="password" id="new-admin-pass" placeholder="Digite sua nova senha" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm">
-          </div>
-          <button onclick="changeAdminPassword()" class="bg-brand-deepgreen text-white px-6 py-2 rounded-lg text-xs font-semibold uppercase tracking-widest hover:bg-brand-olive transition-all">
+          <input type="password" id="new-admin-pass" placeholder="Nova senha" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm">
+          <button onclick="changeAdminPassword()" class="bg-brand-deepgreen text-white px-6 py-2 rounded-lg text-xs uppercase tracking-widest hover:bg-brand-olive transition-all">
             Alterar Senha
           </button>
         </div>
 
-        <!-- LISTA DE PEÇAS NO CATÁLOGO -->
+        <!-- LISTA DE PEÇAS -->
         <div class="bg-white p-6 rounded-xl border border-brand-beige space-y-4">
           <h4 class="font-serif text-2xl text-brand-deepgreen">Peças no Catálogo</h4>
           <div class="overflow-x-auto">
@@ -427,7 +417,7 @@
 
   <script>
     let spUrl = (localStorage.getItem('floralia_sp_url') || "https://wlixfbuqfrymsrrazkcy.supabase.co").trim().replace(/\/+$/, '');
-    let spKey = localStorage.getItem('floralia_sp_key') || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsaXhmYnVxZnJ5bXNycmF6a2N5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI2MTg5NzIsImV4cCI6MjEwODE5NDk3Mn0.5GqTgPVNluS53AeRZfxxXCZWFT4OZGLzAgEO-1X_CZI";
+    let spKey = localStorage.getItem('floralia_sp_key'] || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsaXhmYnVxZnJ5bXNycmF6a2N5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI2MTg5NzIsImV4cCI6MjEwODE5NDk3Mn0.5GqTgPVNluS53AeRZfxxXCZWFT4OZGLzAgEO-1X_CZI";
     
     let pieces = [];
     let whatsappNumber = localStorage.getItem('floralia_phone') || "5511999999999";
@@ -441,7 +431,9 @@
         name: "Essência Branca",
         category: "Orquídeas e composições tropicais",
         desc: "Composição elegante de orquídeas Phalaenopsis em vaso de cerâmica artesanal.",
-        img: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=800&q=80"
+        img: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=800&q=80",
+        gallery: [],
+        video_url: ""
       }
     ];
 
@@ -461,13 +453,11 @@
         renderPortfolio('all');
       }
 
-      // FORMA 1: DETETA ?admin=true OU #admin NA URL
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.has('admin') || window.location.hash === '#admin') {
         openAdminModal();
       }
 
-      // FORMA 2: ATALHO DE TECLADO Ctrl + Shift + A
       window.addEventListener('keydown', (e) => {
         if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
           e.preventDefault();
@@ -490,18 +480,12 @@
     function saveSupabaseCredentials() {
       const url = document.getElementById('supabase-url').value.trim().replace(/\/+$/, '');
       const key = document.getElementById('supabase-key').value.trim();
-
-      if(!url || !key) {
-        alert("Por favor, preencha a URL e a Chave Anon.");
-        return;
-      }
-
+      if(!url || !key) { alert("Preencha a URL e a Chave."); return; }
       localStorage.setItem('floralia_sp_url', url);
       localStorage.setItem('floralia_sp_key', key);
-      spUrl = url;
-      spKey = key;
+      spUrl = url; spKey = key;
       initSupabase(url, key);
-      alert("Conexão com o Supabase salva com sucesso!");
+      alert("Conexão salva com sucesso!");
     }
 
     async function loadPiecesFromSupabase() {
@@ -518,18 +502,9 @@
       if(!supabaseClient) return;
       const { data, error } = await supabaseClient.from('settings').select('*').eq('id', 'main').single();
       if(!error && data) {
-        if(data.phone) {
-          whatsappNumber = data.phone;
-          document.getElementById('config-phone').value = data.phone;
-        }
-        if(data.artist_photo) {
-          artistPhoto = data.artist_photo;
-          document.getElementById('about-artist-img').src = data.artist_photo;
-          document.getElementById('artist-img-url').value = data.artist_photo;
-        }
-        if(data.admin_pass) {
-          currentAdminPass = data.admin_pass;
-        }
+        if(data.phone) { whatsappNumber = data.phone; document.getElementById('config-phone').value = data.phone; }
+        if(data.artist_photo) { artistPhoto = data.artist_photo; document.getElementById('about-artist-img').src = data.artist_photo; document.getElementById('artist-img-url').value = data.artist_photo; }
+        if(data.admin_pass) { currentAdminPass = data.admin_pass; }
       }
     }
 
@@ -537,9 +512,7 @@
       const grid = document.getElementById('portfolio-grid');
       grid.innerHTML = '';
 
-      const filtered = filterCategoryName === 'all' 
-        ? pieces 
-        : pieces.filter(p => p.category === filterCategoryName);
+      const filtered = filterCategoryName === 'all' ? pieces : pieces.filter(p => p.category === filterCategoryName);
 
       filtered.forEach(piece => {
         const card = document.createElement('div');
@@ -559,7 +532,7 @@
           </div>
           <div class="p-6 pt-0 flex flex-col space-y-2">
             <button onclick="openPieceModal(${piece.id})" class="w-full border border-brand-gold text-brand-deepgreen text-xs uppercase tracking-widest py-2.5 rounded-full hover:bg-brand-gold hover:text-white transition-all">
-              Ver Detalhes
+              Ver Detalhes & Mídias
             </button>
             <button onclick="openPieceWhatsApp('${piece.name}')" class="w-full bg-brand-deepgreen text-white text-xs uppercase tracking-widest py-2.5 rounded-full hover:bg-brand-olive transition-all flex items-center justify-center space-x-1">
               <i class="ph ph-whatsapp-logo text-base"></i>
@@ -571,9 +544,7 @@
       });
     }
 
-    function filterCategory(catName) {
-      renderPortfolio(catName);
-    }
+    function filterCategory(catName) { renderPortfolio(catName); }
 
     function openPieceModal(id) {
       const item = pieces.find(p => p.id === id);
@@ -584,6 +555,37 @@
       document.getElementById('modal-category').textContent = item.category;
       document.getElementById('modal-desc').textContent = item.desc || item.description || '';
       
+      const mediaGallery = document.getElementById('modal-media-gallery');
+      mediaGallery.innerHTML = '';
+
+      // Adiciona miniatura da capa
+      let allImages = [item.img];
+      if (item.gallery && Array.isArray(item.gallery)) {
+        allImages = allImages.concat(item.gallery);
+      } else if (typeof item.gallery === 'string' && item.gallery.trim() !== '') {
+        allImages = allImages.concat(item.gallery.split(',').map(s => s.trim()));
+      }
+
+      allImages.forEach(imgUrl => {
+        const thumb = document.createElement('img');
+        thumb.src = imgUrl;
+        thumb.className = 'w-16 h-16 object-cover rounded cursor-pointer border hover:border-brand-gold';
+        thumb.onclick = () => { document.getElementById('modal-img').src = imgUrl; };
+        mediaGallery.appendChild(thumb);
+      });
+
+      // Se houver vídeo cadastrado
+      if (item.video_url) {
+        const videoThumb = document.createElement('div');
+        videoThumb.className = 'w-16 h-16 bg-brand-deepgreen text-white flex items-center justify-center rounded cursor-pointer text-xl';
+        videoThumb.innerHTML = '<i class="ph ph-video"></i>';
+        videoThumb.onclick = () => {
+          const modalContainer = document.getElementById('modal-img').parentElement;
+          modalContainer.innerHTML = `<video src="${item.video_url}" controls autoplay class="w-full h-full object-cover rounded-xl"></video>`;
+        };
+        mediaGallery.appendChild(videoThumb);
+      }
+
       const whatsappBtn = document.getElementById('modal-whatsapp-btn');
       whatsappBtn.onclick = () => openPieceWhatsApp(item.name);
 
@@ -592,16 +594,17 @@
 
     function closePieceModal() {
       document.getElementById('piece-modal').classList.add('hidden');
+      // Restaurar imagem padrão ao fechar
+      const modalContainer = document.getElementById('modal-img').parentElement;
+      modalContainer.innerHTML = `<img id="modal-img" src="" class="w-full h-full object-cover">`;
     }
 
     function openGeneralWhatsApp() {
-      const text = "Olá! Gostaria de solicitar um orçamento para os arranjos do Florália Atelier.";
-      window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
+      window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Olá! Gostaria de orçamento.")}`, '_blank');
     }
 
     function openPieceWhatsApp(pieceName) {
-      const text = `Olá! Gostaria de consultar a disponibilidade do arranjo autoral "${pieceName}".`;
-      window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
+      window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Olá! Tenho interesse no arranjo "${pieceName}".`)}`, '_blank');
     }
 
     function handleContactSubmit(e) {
@@ -609,76 +612,74 @@
       const name = document.getElementById('form-name').value;
       const piece = document.getElementById('form-piece').value;
       const message = document.getElementById('form-message').value;
-
-      let text = `Olá, meu nome é ${name}.`;
-      if(piece) text += ` Tenho interesse na peça/serviço: ${piece}.`;
-      text += ` Mensagem: ${message}`;
-
-      window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
+      window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`Olá, sou ${name}. Arranjo: ${piece}. Msg: ${message}`)}`, '_blank');
     }
 
-    function openAdminModal() {
-      document.getElementById('admin-modal').classList.remove('hidden');
-    }
-
-    function closeAdminModal() {
-      document.getElementById('admin-modal').classList.add('hidden');
-    }
+    function openAdminModal() { document.getElementById('admin-modal').classList.remove('hidden'); }
+    function closeAdminModal() { document.getElementById('admin-modal').classList.add('hidden'); }
 
     let isAdminLoggedIn = false;
     function authenticateAdmin() {
-      const pass = document.getElementById('admin-pass').value;
-      if(pass === currentAdminPass) {
+      if(document.getElementById('admin-pass').value === currentAdminPass) {
         isAdminLoggedIn = true;
         document.getElementById('admin-login-view').classList.add('hidden');
         document.getElementById('admin-dashboard-view').classList.remove('hidden');
         renderAdminPiecesTable();
-      } else {
-        alert('Senha incorreta!');
-      }
+      } else { alert('Senha incorreta!'); }
     }
 
-    function previewImageUpload(event) {
+    function previewImageUpload(event, targetId) {
       const file = event.target.files[0];
       if (file) {
         const reader = new FileReader();
-        reader.onload = function(e) {
-          document.getElementById('piece-img-url').value = e.target.result;
-        }
+        reader.onload = e => document.getElementById(targetId).value = e.target.result;
         reader.readAsDataURL(file);
       }
     }
 
-    // CONVERTE A FOTO DO ARTISTA PARA BASE64 E MOSTRA NO PREVIEW
+    function previewExtraImages(event) {
+      const files = event.target.files;
+      let urls = [];
+      let loadedCount = 0;
+      for (let i = 0; i < files.length; i++) {
+        const reader = new FileReader();
+        reader.onload = e => {
+          urls.push(e.target.result);
+          loadedCount++;
+          if (loadedCount === files.length) {
+            document.getElementById('piece-gallery').value = urls.join(', ');
+          }
+        };
+        reader.readAsDataURL(files[i]);
+      }
+    }
+
+    function previewVideoUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = e => document.getElementById('piece-video-url').value = e.target.result;
+        reader.readAsDataURL(file);
+      }
+    }
+
     function previewArtistImage(event) {
       const file = event.target.files[0];
       if (file) {
         const reader = new FileReader();
-        reader.onload = function(e) {
-          document.getElementById('artist-img-url').value = e.target.result;
-        }
+        reader.onload = e => document.getElementById('artist-img-url').value = e.target.result;
         reader.readAsDataURL(file);
       }
     }
 
-    // SALVA A FOTO NA NUVEM E SINCRONIZA EM TODOS OS DISPOSITIVOS
     async function saveArtistPhoto() {
       const url = document.getElementById('artist-img-url').value;
       if(url) {
         artistPhoto = url;
         localStorage.setItem('floralia_artist_photo', url);
         document.getElementById('about-artist-img').src = url;
-
-        if(supabaseClient) {
-          const { error } = await supabaseClient.from('settings').upsert({ id: 'main', artist_photo: url, phone: whatsappNumber, admin_pass: currentAdminPass });
-          if(error) {
-            alert("Aviso: A imagem foi salva localmente. Para salvar na nuvem, certifique-se de executar a tabela 'settings' no SQL Editor do Supabase.");
-          } else {
-            alert('Sua foto de perfil foi salva com sucesso na nuvem e atualizada em todos os dispositivos!');
-          }
-        } else {
-          alert('Foto atualizada com sucesso!');
-        }
+        if(supabaseClient) await supabaseClient.from('settings').upsert({ id: 'main', artist_photo: url, phone: whatsappNumber, admin_pass: currentAdminPass });
+        alert('Foto atualizada!');
       }
     }
 
@@ -687,14 +688,8 @@
       if(newPass) {
         currentAdminPass = newPass;
         localStorage.setItem('floralia_admin_pass', newPass);
-
-        if(supabaseClient) {
-          await supabaseClient.from('settings').upsert({ id: 'main', admin_pass: newPass, phone: whatsappNumber, artist_photo: artistPhoto });
-        }
-        alert('Senha do Administrador alterada com sucesso!');
-        document.getElementById('new-admin-pass').value = '';
-      } else {
-        alert('Por favor, digite uma nova senha.');
+        if(supabaseClient) await supabaseClient.from('settings').upsert({ id: 'main', admin_pass: newPass, phone: whatsappNumber, artist_photo: artistPhoto });
+        alert('Senha alterada!');
       }
     }
 
@@ -704,63 +699,47 @@
       const name = document.getElementById('piece-name').value;
       const category = document.getElementById('piece-category').value;
       const desc = document.getElementById('piece-desc').value;
-      const img = document.getElementById('piece-img-url').value || 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=800&q=80';
+      const img = document.getElementById('piece-img-url').value;
+      const galleryStr = document.getElementById('piece-gallery').value;
+      const video_url = document.getElementById('piece-video-url').value;
+
+      const gallery = galleryStr ? galleryStr.split(',').map(s => s.trim()) : [];
+      const pieceData = { name, category, description: desc, img, gallery, video_url };
 
       if(editId) {
         if(supabaseClient) {
-          const { error } = await supabaseClient.from('pieces').update({ name, category, description: desc, img }).eq('id', editId);
-          if(error) {
-            alert('Erro ao atualizar no Supabase: ' + error.message);
-          } else {
-            alert('Arranjo atualizado com sucesso!');
-            loadPiecesFromSupabase();
-          }
+          await supabaseClient.from('pieces').update(pieceData).eq('id', editId);
         } else {
           const index = pieces.findIndex(p => p.id == editId);
-          if(index !== -1) {
-            pieces[index] = { id: editId, name, category, desc, img };
-            localStorage.setItem('floralia_pieces', JSON.stringify(pieces));
-            alert('Arranjo atualizado localmente!');
-            renderPortfolio();
-            renderAdminPiecesTable();
-          }
+          if(index !== -1) pieces[index] = { id: editId, ...pieceData };
         }
+        alert('Arranjo atualizado!');
       } else {
-        const newPiece = { name, category, description: desc, img };
-
         if(supabaseClient) {
-          const { error } = await supabaseClient.from('pieces').insert([newPiece]);
-          if(error) {
-            alert('Erro ao salvar no Supabase: ' + error.message);
-          } else {
-            alert('Arranjo guardado com sucesso na nuvem!');
-            loadPiecesFromSupabase();
-          }
+          await supabaseClient.from('pieces').insert([pieceData]);
         } else {
-          newPiece.id = Date.now();
-          pieces.push(newPiece);
-          localStorage.setItem('floralia_pieces', JSON.stringify(pieces));
-          alert('Arranjo guardado localmente!');
-          renderPortfolio();
-          renderAdminPiecesTable();
+          pieceData.id = Date.now();
+          pieces.push(pieceData);
         }
+        alert('Arranjo salvo!');
       }
-
       resetForm();
+      loadPiecesFromSupabase();
     }
 
     function editPiece(id) {
       const piece = pieces.find(p => p.id == id);
       if(!piece) return;
-
       document.getElementById('piece-id-edit').value = piece.id;
       document.getElementById('piece-name').value = piece.name;
       document.getElementById('piece-category').value = piece.category;
       document.getElementById('piece-desc').value = piece.desc || piece.description || '';
       document.getElementById('piece-img-url').value = piece.img;
+      document.getElementById('piece-gallery').value = Array.isArray(piece.gallery) ? piece.gallery.join(', ') : (piece.gallery || '');
+      document.getElementById('piece-video-url').value = piece.video_url || '';
 
       document.getElementById('form-title').textContent = "Editar Arranjo";
-      document.getElementById('btn-save-piece').textContent = "Atualizar Alterações";
+      document.getElementById('btn-save-piece').textContent = "Atualizar";
       document.getElementById('cancel-edit-btn').classList.remove('hidden');
     }
 
@@ -769,7 +748,8 @@
       document.getElementById('piece-name').value = '';
       document.getElementById('piece-desc').value = '';
       document.getElementById('piece-img-url').value = '';
-      document.getElementById('piece-file').value = '';
+      document.getElementById('piece-gallery').value = '';
+      document.getElementById('piece-video-url').value = '';
       document.getElementById('form-title').textContent = "Cadastrar Novo Arranjo";
       document.getElementById('btn-save-piece').textContent = "Salvar Arranjo";
       document.getElementById('cancel-edit-btn').classList.add('hidden');
@@ -778,33 +758,24 @@
     function renderAdminPiecesTable() {
       const list = document.getElementById('admin-pieces-list');
       list.innerHTML = '';
-
       pieces.forEach(p => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td class="p-3"><img src="${p.img}" class="w-10 h-10 object-cover rounded border"></td>
-          <td class="p-3 font-semibold text-brand-deepgreen">${p.name}</td>
-          <td class="p-3">${p.category}</td>
-          <td class="p-3 text-right space-x-2">
-            <button onclick="editPiece(${p.id})" class="text-blue-600 hover:text-blue-800 font-medium"><i class="ph ph-pencil-simple"></i> Editar</button>
-            <button onclick="deletePiece(${p.id})" class="text-red-600 hover:text-red-800 font-medium"><i class="ph ph-trash"></i> Excluir</button>
-          </td>
-        `;
-        list.appendChild(tr);
+        list.innerHTML += `
+          <tr>
+            <td class="p-3"><img src="${p.img}" class="w-10 h-10 object-cover rounded border"></td>
+            <td class="p-3 font-semibold">${p.name}</td>
+            <td class="p-3">${p.category}</td>
+            <td class="p-3 text-right space-x-2">
+              <button onclick="editPiece(${p.id})" class="text-blue-600">Editar</button>
+              <button onclick="deletePiece(${p.id})" class="text-red-600">Excluir</button>
+            </td>
+          </tr>`;
       });
     }
 
     async function deletePiece(id) {
-      if(confirm('Tem certeza de que deseja remover esta peça?')) {
-        if(supabaseClient) {
-          await supabaseClient.from('pieces').delete().eq('id', id);
-          loadPiecesFromSupabase();
-        } else {
-          pieces = pieces.filter(p => p.id !== id);
-          localStorage.setItem('floralia_pieces', JSON.stringify(pieces));
-          renderPortfolio();
-          renderAdminPiecesTable();
-        }
+      if(confirm('Remover esta peça?')) {
+        if(supabaseClient) await supabaseClient.from('pieces').delete().eq('id', id);
+        loadPiecesFromSupabase();
       }
     }
 
@@ -813,16 +784,12 @@
       if(phone) {
         whatsappNumber = phone;
         localStorage.setItem('floralia_phone', phone);
-        if(supabaseClient) {
-          await supabaseClient.from('settings').upsert({ id: 'main', phone, artist_photo: artistPhoto, admin_pass: currentAdminPass });
-        }
-        alert('Número do WhatsApp atualizado!');
+        if(supabaseClient) await supabaseClient.from('settings').upsert({ id: 'main', phone, artist_photo: artistPhoto, admin_pass: currentAdminPass });
+        alert('WhatsApp atualizado!');
       }
     }
 
-    function toggleMobileMenu() {
-      document.getElementById('mobile-menu').classList.toggle('hidden');
-    }
+    function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
   </script>
 </body>
 </html>
