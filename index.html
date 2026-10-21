@@ -61,8 +61,8 @@
   <header class="sticky top-0 z-40 bg-brand-offwhite/90 backdrop-blur-md border-b border-brand-beige/60 transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
-      <!-- LOGO (DUPLO CLIQUE ABRE O PAINEL ADM) -->
-      <a href="#" class="flex items-center space-x-3 group" ondblclick="openAdminModal()">
+      <!-- LOGO COM DETETOR DE TOQUE RÁPIDO PARA O ADM -->
+      <a href="#" class="flex items-center space-x-3 group" onclick="handleLogoClicks(event)">
         <div class="w-10 h-10 rounded-full border border-brand-gold flex items-center justify-center bg-brand-offwhite text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-white transition-all shadow-sm">
           <i class="ph ph-flower-tulip"></i>
         </div>
@@ -72,6 +72,7 @@
         </div>
       </a>
 
+      <!-- MENU PÚBLICO -->
       <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide text-brand-text">
         <a href="#inicio" class="hover:text-brand-gold transition-colors">Início</a>
         <a href="#portfolio" class="hover:text-brand-gold transition-colors">Portfólio</a>
@@ -93,6 +94,7 @@
       </div>
     </div>
 
+    <!-- MOBILE MENU -->
     <div id="mobile-menu" class="hidden md:hidden bg-brand-offwhite border-b border-brand-beige px-4 pt-2 pb-6 space-y-4 shadow-lg">
       <a href="#inicio" onclick="toggleMobileMenu()" class="block text-brand-text hover:text-brand-gold font-medium">Início</a>
       <a href="#portfolio" onclick="toggleMobileMenu()" class="block text-brand-text hover:text-brand-gold font-medium">Portfólio</a>
@@ -219,7 +221,7 @@
   <!-- RODAPÉ -->
   <footer class="bg-brand-offwhite border-t border-brand-beige py-10 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="flex items-center space-x-3 cursor-pointer" ondblclick="openAdminModal()">
+      <div class="flex items-center space-x-3 cursor-pointer" onclick="handleLogoClicks(event)">
         <div class="w-8 h-8 rounded-full border border-brand-gold flex items-center justify-center bg-brand-offwhite text-brand-gold text-base shadow-sm">
           <i class="ph ph-flower-tulip"></i>
         </div>
@@ -237,18 +239,14 @@
     </div>
   </footer>
 
-  <!-- MODAL DETALHES (COM SUPORTE A GALERIA E VÍDEO) -->
+  <!-- MODAL DETALHES -->
   <div id="piece-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-brand-offwhite w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl border border-brand-gold/30 max-h-[90vh] flex flex-col md:flex-row">
       <div class="md:w-1/2 p-4 bg-black/5 flex flex-col justify-center space-y-4">
-        <!-- Imagem Principal / Ativa -->
         <div class="relative aspect-[4/5] rounded-xl overflow-hidden border">
           <img id="modal-img" src="" class="w-full h-full object-cover">
         </div>
-        <!-- Miniaturas / Vídeo na Modal -->
-        <div id="modal-media-gallery" class="flex gap-2 overflow-x-auto pb-2">
-          <!-- Preenchido via JS -->
-        </div>
+        <div id="modal-media-gallery" class="flex gap-2 overflow-x-auto pb-2"></div>
       </div>
       <div class="md:w-1/2 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto">
         <div>
@@ -309,7 +307,7 @@
           </button>
         </div>
 
-        <!-- FORMULÁRIO ARRANJO (COM MÚLTIPLAS FOTOS E VÍDEO) -->
+        <!-- FORMULÁRIO ARRANJO -->
         <div class="bg-white p-6 rounded-xl border border-brand-beige space-y-4">
           <div class="flex justify-between items-center">
             <h4 id="form-title" class="font-serif text-2xl text-brand-deepgreen">Cadastrar Novo Arranjo</h4>
@@ -352,7 +350,7 @@
             </div>
 
             <div>
-              <label class="block text-xs uppercase text-brand-brown mb-1">Vídeo do Arranjo (Opcional - Arquivo ou URL do YouTube/Instagram/Vídeo)</label>
+              <label class="block text-xs uppercase text-brand-brown mb-1">Vídeo do Arranjo (Opcional)</label>
               <input type="file" id="piece-video-file" accept="video/*" onchange="previewVideoUpload(event)" class="w-full text-xs text-brand-brown">
               <input type="text" id="piece-video-url" placeholder="Ou cole o link do vídeo" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm mt-2">
             </div>
@@ -417,13 +415,31 @@
 
   <script>
     let spUrl = (localStorage.getItem('floralia_sp_url') || "https://wlixfbuqfrymsrrazkcy.supabase.co").trim().replace(/\/+$/, '');
-    let spKey = localStorage.getItem('floralia_sp_key'] || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsaXhmYnVxZnJ5bXNycmF6a2N5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI2MTg5NzIsImV4cCI6MjEwODE5NDk3Mn0.5GqTgPVNluS53AeRZfxxXCZWFT4OZGLzAgEO-1X_CZI";
+    let spKey = localStorage.getItem('floralia_sp_key') || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsaXhmYnVxZnJ5bXNycmF6a2N5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI2MTg5NzIsImV4cCI6MjEwODE5NDk3Mn0.5GqTgPVNluS53AeRZfxxXCZWFT4OZGLzAgEO-1X_CZI";
     
     let pieces = [];
     let whatsappNumber = localStorage.getItem('floralia_phone') || "5511999999999";
     let artistPhoto = localStorage.getItem('floralia_artist_photo') || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80";
     let currentAdminPass = localStorage.getItem('floralia_admin_pass') || "floralia123";
     let supabaseClient = null;
+
+    // CONTROLO DE TOQUES RÁPIDOS NO LOGO
+    let logoClickCount = 0;
+    let logoClickTimer = null;
+
+    function handleLogoClicks(e) {
+      e.preventDefault();
+      logoClickCount++;
+      if (logoClickCount === 1) {
+        logoClickTimer = setTimeout(() => {
+          logoClickCount = 0;
+        }, 800); // Janela de 800ms para o segundo toque
+      } else if (logoClickCount >= 2) {
+        clearTimeout(logoClickTimer);
+        logoClickCount = 0;
+        openAdminModal();
+      }
+    }
 
     const defaultPieces = [
       {
@@ -558,7 +574,6 @@
       const mediaGallery = document.getElementById('modal-media-gallery');
       mediaGallery.innerHTML = '';
 
-      // Adiciona miniatura da capa
       let allImages = [item.img];
       if (item.gallery && Array.isArray(item.gallery)) {
         allImages = allImages.concat(item.gallery);
@@ -574,7 +589,6 @@
         mediaGallery.appendChild(thumb);
       });
 
-      // Se houver vídeo cadastrado
       if (item.video_url) {
         const videoThumb = document.createElement('div');
         videoThumb.className = 'w-16 h-16 bg-brand-deepgreen text-white flex items-center justify-center rounded cursor-pointer text-xl';
@@ -594,7 +608,6 @@
 
     function closePieceModal() {
       document.getElementById('piece-modal').classList.add('hidden');
-      // Restaurar imagem padrão ao fechar
       const modalContainer = document.getElementById('modal-img').parentElement;
       modalContainer.innerHTML = `<img id="modal-img" src="" class="w-full h-full object-cover">`;
     }
