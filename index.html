@@ -57,11 +57,11 @@
 </head>
 <body class="antialiased selection:bg-brand-gold selection:text-white">
 
-  <!-- HEADER -->
+  <!-- HEADER PÚBLICO (SEM NENHUM BOTÃO OU LINK DE ADMIN) -->
   <header class="sticky top-0 z-40 bg-brand-offwhite/90 backdrop-blur-md border-b border-brand-beige/60 transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
-      <!-- LOGO COM ÍCONE DE FLOR EM VEZ DE FA -->
+      <!-- LOGO LIMPO -->
       <a href="#" class="flex items-center space-x-3 group">
         <div class="w-10 h-10 rounded-full border border-brand-gold flex items-center justify-center bg-brand-offwhite text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-white transition-all shadow-sm">
           <i class="ph ph-flower-tulip"></i>
@@ -72,7 +72,7 @@
         </div>
       </a>
 
-      <!-- MENU NAVEGAÇÃO -->
+      <!-- MENU PÚBLICO -->
       <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide text-brand-text">
         <a href="#inicio" class="hover:text-brand-gold transition-colors">Início</a>
         <a href="#portfolio" class="hover:text-brand-gold transition-colors">Portfólio</a>
@@ -85,15 +85,9 @@
           <i class="ph ph-whatsapp-logo text-base"></i>
           <span>Solicitar Orçamento</span>
         </button>
-        <button onclick="toggleAdminModal()" class="text-brand-brown hover:text-brand-deepgreen p-2 text-lg" title="Painel Administrativo">
-          <i class="ph ph-user-gear"></i>
-        </button>
       </div>
 
       <div class="flex md:hidden items-center space-x-2">
-        <button onclick="toggleAdminModal()" class="text-brand-brown hover:text-brand-deepgreen p-2 text-xl" title="Painel Administrativo">
-          <i class="ph ph-user-gear"></i>
-        </button>
         <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-brand-deepgreen p-2 text-2xl focus:outline-none">
           <i class="ph ph-list" id="menu-icon"></i>
         </button>
@@ -162,7 +156,7 @@
       </div>
 
       <div id="portfolio-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Renderizado via JS -->
+        <!-- Renderizado JS -->
       </div>
     </section>
 
@@ -171,14 +165,12 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          <!-- Foto do Autor EDITÁVEL NO ADM -->
           <div class="lg:col-span-5 relative flex justify-center">
             <div class="relative w-full max-w-md aspect-[4/5] rounded-2xl overflow-hidden border-2 border-brand-gold p-2 bg-brand-offwhite shadow-xl">
               <img id="about-artist-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" alt="Florália Atelier" class="w-full h-full object-cover rounded-xl shadow-inner">
             </div>
           </div>
 
-          <!-- Conteúdo Sobre -->
           <div class="lg:col-span-7 space-y-6 text-left">
             <span class="text-brand-gold uppercase text-xs tracking-widest font-semibold">Ateliê Autoral</span>
             <h2 class="font-serif text-3xl sm:text-5xl text-brand-deepgreen">Sobre O Nosso Ateliê</h2>
@@ -288,28 +280,27 @@
     </div>
   </div>
 
-  <!-- PAINEL ADMINISTRATIVO PROTEGIDO -->
-  <div id="admin-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+  <!-- PAINEL ADMINISTRATIVO PRIVADO (OCULTO E ACESSÍVEL APENAS VIA /ADMIN OU CTRL+SHIFT+A) -->
+  <div id="admin-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
     <div class="bg-brand-offwhite w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl border border-brand-gold flex flex-col max-h-[90vh]">
       
       <div class="bg-brand-deepgreen px-6 py-4 text-white flex items-center justify-between">
         <div class="flex items-center space-x-2">
           <i class="ph ph-sliders text-brand-gold text-xl"></i>
-          <h3 class="font-serif text-xl">Painel Administrativo — Florália Atelier</h3>
+          <h3 class="font-serif text-xl">Painel Administrativo — Privado</h3>
         </div>
-        <button onclick="toggleAdminModal()" class="text-white/70 hover:text-white text-2xl"><i class="ph ph-x"></i></button>
+        <button onclick="closeAdminModal()" class="text-white/70 hover:text-white text-2xl"><i class="ph ph-x"></i></button>
       </div>
 
       <!-- TELA DE LOGIN PRIVADA -->
       <div id="admin-login-view" class="p-8 max-w-md mx-auto w-full text-center space-y-4">
-        <i class="ph ph-lock-key text-4xl text-brand-gold"></i>
-        <h4 class="font-serif text-2xl text-brand-deepgreen">Área Restrita</h4>
-        <p class="text-xs text-brand-brown">Insira a senha do administrador para acessar o painel de gestão do ateliê.</p>
+        <i class="ph ph-shield-check text-4xl text-brand-gold"></i>
+        <h4 class="font-serif text-2xl text-brand-deepgreen">Autenticação do Proprietário</h4>
         <input type="password" id="admin-pass" placeholder="Senha do Administrador" class="w-full border border-brand-beige rounded-lg px-4 py-3 focus:outline-none focus:border-brand-gold">
         <button onclick="authenticateAdmin()" class="w-full bg-brand-deepgreen text-white py-3 rounded-lg text-xs uppercase tracking-widest hover:bg-brand-olive transition-all">Entrar no Painel</button>
       </div>
 
-      <!-- PAINEL PRIVADO (SÓ EXIBE APÓS AUTENTICAÇÃO) -->
+      <!-- PAINEL PRIVADO -->
       <div id="admin-dashboard-view" class="hidden flex-1 overflow-y-auto p-6 space-y-8">
         
         <!-- INTEGRACAO SUPABASE -->
@@ -375,7 +366,7 @@
           </form>
         </div>
 
-        <!-- CONFIGURAÇÃO DA SUA FOTO DE PERFIL (SEÇÃO SOBRE) -->
+        <!-- FOTO DO PERFIL / SOBRE -->
         <div class="bg-white p-6 rounded-xl border border-brand-beige space-y-4">
           <h4 class="font-serif text-2xl text-brand-deepgreen">Sua Foto de Perfil (Seção Sobre)</h4>
           <div>
@@ -388,7 +379,7 @@
           </button>
         </div>
 
-        <!-- CONFIGURAÇÕES DE WHATSAPP DA MARCA -->
+        <!-- CONFIGURAÇÕES DE WHATSAPP -->
         <div class="bg-white p-6 rounded-xl border border-brand-beige space-y-4">
           <h4 class="font-serif text-2xl text-brand-deepgreen">Configuração do Número do WhatsApp</h4>
           <div>
@@ -397,6 +388,18 @@
           </div>
           <button onclick="savePhoneSetting()" class="bg-brand-gold text-brand-deepgreen px-6 py-2 rounded-lg text-xs font-semibold uppercase tracking-widest hover:bg-brand-deepgreen hover:text-white transition-all">
             Atualizar Número do WhatsApp
+          </button>
+        </div>
+
+        <!-- TROCAR SENHA DO PAINEL ADMINISTRATIVO -->
+        <div class="bg-white p-6 rounded-xl border border-brand-beige space-y-4">
+          <h4 class="font-serif text-2xl text-brand-deepgreen">Alterar Senha do Administrador</h4>
+          <div>
+            <label class="block text-xs uppercase text-brand-brown mb-1">Nova Senha</label>
+            <input type="password" id="new-admin-pass" placeholder="Digite sua nova senha" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm">
+          </div>
+          <button onclick="changeAdminPassword()" class="bg-brand-deepgreen text-white px-6 py-2 rounded-lg text-xs font-semibold uppercase tracking-widest hover:bg-brand-olive transition-all">
+            Alterar Senha
           </button>
         </div>
 
@@ -423,13 +426,13 @@
   </div>
 
   <script>
-    // URL e Chave Anon
     let spUrl = (localStorage.getItem('floralia_sp_url') || "https://wlixfbuqfrymsrrazkcy.supabase.co").trim().replace(/\/+$/, '');
     let spKey = localStorage.getItem('floralia_sp_key') || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsaXhmYnVxZnJ5bXNycmF6a2N5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI2MTg5NzIsImV4cCI6MjEwODE5NDk3Mn0.5GqTgPVNluS53AeRZfxxXCZWFT4OZGLzAgEO-1X_CZI";
     
     let pieces = [];
     let whatsappNumber = localStorage.getItem('floralia_phone') || "5511999999999";
     let artistPhoto = localStorage.getItem('floralia_artist_photo') || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80";
+    let currentAdminPass = localStorage.getItem('floralia_admin_pass') || "floralia123";
     let supabaseClient = null;
 
     const defaultPieces = [
@@ -457,6 +460,19 @@
         pieces = JSON.parse(localStorage.getItem('floralia_pieces')) || defaultPieces;
         renderPortfolio('all');
       }
+
+      // ROTA SECRETA VIA URL (#admin)
+      if (window.location.hash === '#admin') {
+        openAdminModal();
+      }
+
+      // ATALHO SECRETO NO TECLADO (Ctrl + Shift + A)
+      window.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+          e.preventDefault();
+          openAdminModal();
+        }
+      });
     });
 
     function initSupabase(url, key) {
@@ -464,6 +480,7 @@
         let cleanUrl = url.trim().replace(/\/+$/, '');
         supabaseClient = supabase.createClient(cleanUrl, key.trim());
         loadPiecesFromSupabase();
+        loadSettingsFromSupabase();
       } catch(e) {
         console.error("Erro ao inicializar Supabase:", e);
       }
@@ -493,6 +510,25 @@
         pieces = data;
         renderPortfolio('all');
         if(isAdminLoggedIn) renderAdminPiecesTable();
+      }
+    }
+
+    async function loadSettingsFromSupabase() {
+      if(!supabaseClient) return;
+      const { data, error } = await supabaseClient.from('settings').select('*').eq('id', 'main').single();
+      if(!error && data) {
+        if(data.phone) {
+          whatsappNumber = data.phone;
+          document.getElementById('config-phone').value = data.phone;
+        }
+        if(data.artist_photo) {
+          artistPhoto = data.artist_photo;
+          document.getElementById('about-artist-img').src = data.artist_photo;
+          document.getElementById('artist-img-url').value = data.artist_photo;
+        }
+        if(data.admin_pass) {
+          currentAdminPass = data.admin_pass;
+        }
       }
     }
 
@@ -580,14 +616,22 @@
       window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
     }
 
-    function toggleAdminModal() {
-      document.getElementById('admin-modal').classList.toggle('hidden');
+    // ABRIR/FECHAR MODAL ADMINISTRATIVO
+    function openAdminModal() {
+      document.getElementById('admin-modal').classList.remove('hidden');
+    }
+
+    function closeAdminModal() {
+      document.getElementById('admin-modal').classList.add('hidden');
+      if (window.location.hash === '#admin') {
+        history.pushState("", document.title, window.location.pathname + window.location.search);
+      }
     }
 
     let isAdminLoggedIn = false;
     function authenticateAdmin() {
       const pass = document.getElementById('admin-pass').value;
-      if(pass === 'floralia123') {
+      if(pass === currentAdminPass) {
         isAdminLoggedIn = true;
         document.getElementById('admin-login-view').classList.add('hidden');
         document.getElementById('admin-dashboard-view').classList.remove('hidden');
@@ -619,13 +663,33 @@
       }
     }
 
-    function saveArtistPhoto() {
+    async function saveArtistPhoto() {
       const url = document.getElementById('artist-img-url').value;
       if(url) {
         artistPhoto = url;
         localStorage.setItem('floralia_artist_photo', url);
         document.getElementById('about-artist-img').src = url;
-        alert('Sua foto de perfil foi atualizada com sucesso!');
+
+        if(supabaseClient) {
+          await supabaseClient.from('settings').upsert({ id: 'main', artist_photo: url, phone: whatsappNumber, admin_pass: currentAdminPass });
+        }
+        alert('Sua foto de perfil foi atualizada em todos os dispositivos!');
+      }
+    }
+
+    async function changeAdminPassword() {
+      const newPass = document.getElementById('new-admin-pass').value.trim();
+      if(newPass) {
+        currentAdminPass = newPass;
+        localStorage.setItem('floralia_admin_pass', newPass);
+
+        if(supabaseClient) {
+          await supabaseClient.from('settings').upsert({ id: 'main', admin_pass: newPass, phone: whatsappNumber, artist_photo: artistPhoto });
+        }
+        alert('Senha do Administrador alterada com sucesso!');
+        document.getElementById('new-admin-pass').value = '';
+      } else {
+        alert('Por favor, digite uma nova senha.');
       }
     }
 
@@ -739,11 +803,14 @@
       }
     }
 
-    function savePhoneSetting() {
+    async function savePhoneSetting() {
       const phone = document.getElementById('config-phone').value.trim();
       if(phone) {
         whatsappNumber = phone;
         localStorage.setItem('floralia_phone', phone);
+        if(supabaseClient) {
+          await supabaseClient.from('settings').upsert({ id: 'main', phone, artist_photo: artistPhoto, admin_pass: currentAdminPass });
+        }
         alert('Número do WhatsApp atualizado!');
       }
     }
