@@ -284,7 +284,7 @@
 
       <div id="admin-dashboard-view" class="hidden flex-1 overflow-y-auto p-6 space-y-8">
         
-        <!-- INTEGRAÇÃO SUPABASE BLOQUEADA CONTRA EDIÇÃO ACIDENTAL -->
+        <!-- INTEGRAÇÃO SUPABASE BLOQUEADA -->
         <div class="bg-brand-beige/40 p-6 rounded-xl border border-brand-gold/50 space-y-4 opacity-75">
           <h4 class="font-serif text-xl text-brand-deepgreen flex items-center space-x-2">
             <i class="ph ph-database text-brand-gold text-2xl"></i>
@@ -335,20 +335,29 @@
 
             <div>
               <label class="block text-xs uppercase text-brand-brown mb-1">Foto Principal / Capa *</label>
-              <input type="file" id="piece-file" accept="image/*" onchange="previewImageUpload(event, 'piece-img-url')" class="w-full text-xs text-brand-brown">
-              <input type="text" id="piece-img-url" required placeholder="URL da Foto Principal" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm mt-2">
+              <div class="flex items-center gap-2 mb-2">
+                <input type="file" id="piece-file" accept="image/*" onchange="previewImageUpload(event, 'piece-img-url')" class="w-full text-xs text-brand-brown">
+                <button type="button" onclick="clearCoverImage()" class="bg-red-100 text-red-700 px-3 py-1.5 rounded text-xs hover:bg-red-200">Excluir Capa</button>
+              </div>
+              <input type="text" id="piece-img-url" required placeholder="URL da Foto Principal" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm">
             </div>
 
             <div>
               <label class="block text-xs uppercase text-brand-brown mb-1">Fotos Adicionais (Galeria extra)</label>
-              <input type="file" id="piece-extra-file" accept="image/*" multiple onchange="previewExtraImages(event)" class="w-full text-xs text-brand-brown">
-              <textarea id="piece-gallery" rows="2" placeholder="URLs das fotos adicionais separadas por vírgula" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm mt-2"></textarea>
+              <input type="file" id="piece-extra-file" accept="image/*" multiple onchange="previewExtraImages(event)" class="w-full text-xs text-brand-brown mb-2">
+              <textarea id="piece-gallery" rows="2" placeholder="URLs das fotos adicionais separadas por vírgula" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm"></textarea>
+              
+              <!-- ÁREA VISUAL PARA GERENCIAR E EXCLUIR FOTOS DA GALERIA -->
+              <div id="admin-gallery-preview" class="flex flex-wrap gap-2 mt-3"></div>
             </div>
 
             <div>
               <label class="block text-xs uppercase text-brand-brown mb-1">Vídeo do Arranjo (Opcional)</label>
-              <input type="file" id="piece-video-file" accept="video/*" onchange="previewVideoUpload(event)" class="w-full text-xs text-brand-brown">
-              <input type="text" id="piece-video-url" placeholder="Ou cole o link do vídeo" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm mt-2">
+              <div class="flex items-center gap-2 mb-2">
+                <input type="file" id="piece-video-file" accept="video/*" onchange="previewVideoUpload(event)" class="w-full text-xs text-brand-brown">
+                <button type="button" onclick="clearVideo()" class="bg-red-100 text-red-700 px-3 py-1.5 rounded text-xs hover:bg-red-200">Excluir Vídeo</button>
+              </div>
+              <input type="text" id="piece-video-url" placeholder="Ou cole o link do vídeo" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm">
             </div>
 
             <button type="submit" id="btn-save-piece" class="bg-brand-deepgreen text-white px-6 py-2.5 rounded-lg text-xs uppercase tracking-widest hover:bg-brand-olive transition-all">
@@ -361,8 +370,8 @@
         <div class="bg-white p-6 rounded-xl border border-brand-beige space-y-4">
           <h4 class="font-serif text-2xl text-brand-deepgreen">Sua Foto de Perfil (Seção Sobre)</h4>
           <div>
-            <input type="file" id="artist-file" accept="image/*" onchange="previewArtistImage(event)" class="w-full text-xs text-brand-brown">
-            <input type="text" id="artist-img-url" placeholder="URL da sua foto" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm mt-2">
+            <input type="file" id="artist-file" accept="image/*" onchange="previewArtistImage(event)" class="w-full text-xs text-brand-brown mb-2">
+            <input type="text" id="artist-img-url" placeholder="URL da sua foto" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-sm">
           </div>
           <button onclick="saveArtistPhoto()" class="bg-brand-gold text-brand-deepgreen px-6 py-2 rounded-lg text-xs font-semibold uppercase tracking-widest hover:bg-brand-deepgreen hover:text-white transition-all">
             Atualizar Minha Foto
@@ -410,7 +419,6 @@
   </div>
 
   <script>
-    // CREDENCIAIS FIXAS DO SUPABASE (PROTEGIDAS E NATIVAS)
     let spUrl = "https://wlixfbuqfrymsrrazkcy.supabase.co";
     let spKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsaXhmYnVxZnJ5bXNycmF6a2N5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI2MTg5NzIsImV4cCI6MjEwODE5NDk3Mn0.5GqTgPVNluS53AeRZfxxXCZWFT4OZGLzAgEO-1X_CZI";
     
@@ -552,12 +560,15 @@
       const mediaGallery = document.getElementById('modal-media-gallery');
       mediaGallery.innerHTML = '';
 
-      let allImages = [item.img];
+      let rawGallery = [];
       if (item.gallery && Array.isArray(item.gallery)) {
-        allImages = allImages.concat(item.gallery);
+        rawGallery = item.gallery;
       } else if (typeof item.gallery === 'string' && item.gallery.trim() !== '') {
-        allImages = allImages.concat(item.gallery.split(',').map(s => s.trim()));
+        rawGallery = item.gallery.split(',').map(s => s.trim());
       }
+
+      // Filtra apenas links válidos que não estejam vazios ou corrompidos
+      let allImages = [item.img].concat(rawGallery.filter(url => url && url.length > 5));
 
       allImages.forEach(imgUrl => {
         const thumb = document.createElement('img');
@@ -567,7 +578,7 @@
         mediaGallery.appendChild(thumb);
       });
 
-      if (item.video_url) {
+      if (item.video_url && item.video_url.trim().length > 5) {
         const videoThumb = document.createElement('div');
         videoThumb.className = 'w-16 h-16 bg-brand-deepgreen text-white flex items-center justify-center rounded cursor-pointer text-xl';
         videoThumb.innerHTML = '<i class="ph ph-video"></i>';
@@ -628,22 +639,66 @@
       }
     }
 
+    function clearCoverImage() {
+      document.getElementById('piece-img-url').value = '';
+      document.getElementById('piece-file').value = '';
+    }
+
+    function clearVideo() {
+      document.getElementById('piece-video-url').value = '';
+      document.getElementById('piece-video-file').value = '';
+    }
+
     function previewExtraImages(event) {
       const files = event.target.files;
-      let urls = [];
+      let currentGallery = document.getElementById('piece-gallery').value.split(',').map(s => s.trim()).filter(Boolean);
       let loadedCount = 0;
       for (let i = 0; i < files.length; i++) {
         const reader = new FileReader();
         reader.onload = e => {
-          urls.push(e.target.result);
+          currentGallery.push(e.target.result);
           loadedCount++;
           if (loadedCount === files.length) {
-            document.getElementById('piece-gallery').value = urls.join(', ');
+            document.getElementById('piece-gallery').value = currentGallery.join(', ');
+            updateAdminGalleryPreview();
           }
         };
         reader.readAsDataURL(files[i]);
       }
     }
+
+    function updateAdminGalleryPreview() {
+      const container = document.getElementById('admin-gallery-preview');
+      container.innerHTML = '';
+      let galleryStr = document.getElementById('piece-gallery').value;
+      let urls = galleryStr ? galleryStr.split(',').map(s => s.trim()).filter(Boolean) : [];
+
+      urls.forEach((url, index) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'relative w-16 h-16 border rounded overflow-hidden group';
+        wrapper.innerHTML = `
+          <img src="${url}" class="w-full h-full object-cover">
+          <button type="button" onclick="removeGalleryImage(${index})" class="absolute top-0 right-0 bg-red-600 text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-bl hover:bg-red-800" title="Excluir foto">✕</button>
+        `;
+        container.appendChild(wrapper);
+      });
+    }
+
+    function removeGalleryImage(index) {
+      let galleryStr = document.getElementById('piece-gallery').value;
+      let urls = galleryStr ? galleryStr.split(',').map(s => s.trim()).filter(Boolean) : [];
+      urls.splice(index, 1);
+      document.getElementById('piece-gallery').value = urls.join(', ');
+      updateAdminGalleryPreview();
+    }
+
+    // Ouve alterações manuais na textarea para atualizar miniaturas
+    document.addEventListener('DOMContentLoaded', () => {
+      const galleryInput = document.getElementById('piece-gallery');
+      if(galleryInput) {
+        galleryInput.addEventListener('input', updateAdminGalleryPreview);
+      }
+    });
 
     function previewVideoUpload(event) {
       const file = event.target.files[0];
@@ -694,7 +749,7 @@
       const galleryStr = document.getElementById('piece-gallery').value;
       const video_url = document.getElementById('piece-video-url').value;
 
-      const gallery = galleryStr ? galleryStr.split(',').map(s => s.trim()) : [];
+      const gallery = galleryStr ? galleryStr.split(',').map(s => s.trim()).filter(Boolean) : [];
       const pieceData = { name, category, description: desc, img, gallery, video_url };
 
       if(editId) {
@@ -729,6 +784,8 @@
       document.getElementById('piece-gallery').value = Array.isArray(piece.gallery) ? piece.gallery.join(', ') : (piece.gallery || '');
       document.getElementById('piece-video-url').value = piece.video_url || '';
 
+      updateAdminGalleryPreview();
+
       document.getElementById('form-title').textContent = "Editar Arranjo";
       document.getElementById('btn-save-piece').textContent = "Atualizar";
       document.getElementById('cancel-edit-btn').classList.remove('hidden');
@@ -741,6 +798,7 @@
       document.getElementById('piece-img-url').value = '';
       document.getElementById('piece-gallery').value = '';
       document.getElementById('piece-video-url').value = '';
+      document.getElementById('admin-gallery-preview').innerHTML = '';
       document.getElementById('form-title').textContent = "Cadastrar Novo Arranjo";
       document.getElementById('btn-save-piece').textContent = "Salvar Arranjo";
       document.getElementById('cancel-edit-btn').classList.add('hidden');
