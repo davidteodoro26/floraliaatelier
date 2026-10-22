@@ -61,7 +61,7 @@
   <header class="sticky top-0 z-40 bg-brand-offwhite/90 backdrop-blur-md border-b border-brand-beige/60 transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
-      <!-- LOGO COM DETETOR DE TOQUE RÁPIDO PARA O ADM -->
+      <!-- LOGO (2 toques rápidos abre o ADM no telemóvel) -->
       <a href="#" class="flex items-center space-x-3 group" onclick="handleLogoClicks(event)">
         <div class="w-10 h-10 rounded-full border border-brand-gold flex items-center justify-center bg-brand-offwhite text-brand-gold text-xl group-hover:bg-brand-gold group-hover:text-white transition-all shadow-sm">
           <i class="ph ph-flower-tulip"></i>
@@ -72,7 +72,6 @@
         </div>
       </a>
 
-      <!-- MENU PÚBLICO -->
       <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide text-brand-text">
         <a href="#inicio" class="hover:text-brand-gold transition-colors">Início</a>
         <a href="#portfolio" class="hover:text-brand-gold transition-colors">Portfólio</a>
@@ -94,7 +93,6 @@
       </div>
     </div>
 
-    <!-- MOBILE MENU -->
     <div id="mobile-menu" class="hidden md:hidden bg-brand-offwhite border-b border-brand-beige px-4 pt-2 pb-6 space-y-4 shadow-lg">
       <a href="#inicio" onclick="toggleMobileMenu()" class="block text-brand-text hover:text-brand-gold font-medium">Início</a>
       <a href="#portfolio" onclick="toggleMobileMenu()" class="block text-brand-text hover:text-brand-gold font-medium">Portfólio</a>
@@ -171,7 +169,7 @@
           </div>
           <div class="lg:col-span-7 space-y-6 text-left">
             <span class="text-brand-gold uppercase text-xs tracking-widest font-semibold">Ateliê Autoral</span>
-            <h2 class="font-serif text-3xl sm:text-5xl text-brand-deepgreen">Ozana Teodoro</h2>
+            <h2 class="font-serif text-3xl sm:text-5xl text-brand-deepgreen">Sobre O Nosso Ateliê</h2>
             <div class="w-16 h-0.5 bg-brand-gold"></div>
             <p class="text-brand-text/80 text-base leading-relaxed font-light">
               Meu trabalho nasce da paixão pela combinação única entre flores, folhagens, cores e vasos decorativos. Cada arranjo autoral é pensado individualmente para criar equilíbrio, personalidade e harmonia nos mais diversos ambientes.
@@ -286,25 +284,23 @@
 
       <div id="admin-dashboard-view" class="hidden flex-1 overflow-y-auto p-6 space-y-8">
         
-        <!-- INTEGRACAO SUPABASE -->
-        <div class="bg-brand-beige/40 p-6 rounded-xl border border-brand-gold/50 space-y-4">
+        <!-- INTEGRAÇÃO SUPABASE BLOQUEADA CONTRA EDIÇÃO ACIDENTAL -->
+        <div class="bg-brand-beige/40 p-6 rounded-xl border border-brand-gold/50 space-y-4 opacity-75">
           <h4 class="font-serif text-xl text-brand-deepgreen flex items-center space-x-2">
             <i class="ph ph-database text-brand-gold text-2xl"></i>
-            <span>Integração com Supabase (Nuvem)</span>
+            <span>Integração com Supabase (Segura / Bloqueada)</span>
           </h4>
+          <p class="text-[11px] text-brand-brown">Os dados de conexão estão protegidos contra alterações acidentais.</p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-xs uppercase text-brand-brown mb-1">Project URL</label>
-              <input type="text" id="supabase-url" placeholder="https://xxxxxx.supabase.co" class="w-full border border-brand-beige rounded-lg px-3 py-2 text-xs">
+              <input type="text" id="supabase-url" disabled class="w-full border border-brand-beige bg-brand-offwhite rounded-lg px-3 py-2 text-xs cursor-not-allowed">
             </div>
             <div>
-              <label class="block text-xs uppercase text-brand-brown mb-1">Project API Key (anon / public)</label>
-              <input type="text" id="supabase-key" placeholder="eyJhbGciOiJIUzI1Ni..." class="w-full border border-brand-beige rounded-lg px-3 py-2 text-xs">
+              <label class="block text-xs uppercase text-brand-brown mb-1">Project API Key</label>
+              <input type="text" id="supabase-key" disabled class="w-full border border-brand-beige bg-brand-offwhite rounded-lg px-3 py-2 text-xs cursor-not-allowed">
             </div>
           </div>
-          <button onclick="saveSupabaseCredentials()" class="bg-brand-gold text-brand-deepgreen px-6 py-2 rounded-lg text-xs font-semibold uppercase tracking-widest hover:bg-brand-deepgreen hover:text-white transition-all">
-            Salvar Conexão Supabase
-          </button>
         </div>
 
         <!-- FORMULÁRIO ARRANJO -->
@@ -414,8 +410,9 @@
   </div>
 
   <script>
-    let spUrl = (localStorage.getItem('floralia_sp_url') || "https://wlixfbuqfrymsrrazkcy.supabase.co").trim().replace(/\/+$/, '');
-    let spKey = localStorage.getItem('floralia_sp_key') || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsaXhmYnVxZnJ5bXNycmF6a2N5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI2MTg5NzIsImV4cCI6MjEwODE5NDk3Mn0.5GqTgPVNluS53AeRZfxxXCZWFT4OZGLzAgEO-1X_CZI";
+    // CREDENCIAIS FIXAS DO SUPABASE (PROTEGIDAS E NATIVAS)
+    let spUrl = "https://wlixfbuqfrymsrrazkcy.supabase.co";
+    let spKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsaXhmYnVxZnJ5bXNycmF6a2N5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI2MTg5NzIsImV4cCI6MjEwODE5NDk3Mn0.5GqTgPVNluS53AeRZfxxXCZWFT4OZGLzAgEO-1X_CZI";
     
     let pieces = [];
     let whatsappNumber = localStorage.getItem('floralia_phone') || "5511999999999";
@@ -423,7 +420,6 @@
     let currentAdminPass = localStorage.getItem('floralia_admin_pass') || "floralia123";
     let supabaseClient = null;
 
-    // CONTROLO DE TOQUES RÁPIDOS NO LOGO
     let logoClickCount = 0;
     let logoClickTimer = null;
 
@@ -431,9 +427,7 @@
       e.preventDefault();
       logoClickCount++;
       if (logoClickCount === 1) {
-        logoClickTimer = setTimeout(() => {
-          logoClickCount = 0;
-        }, 800); // Janela de 800ms para o segundo toque
+        logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 800);
       } else if (logoClickCount >= 2) {
         clearTimeout(logoClickTimer);
         logoClickCount = 0;
@@ -462,12 +456,7 @@
       document.getElementById('supabase-url').value = spUrl;
       document.getElementById('supabase-key').value = spKey;
 
-      if(spUrl && spKey) {
-        initSupabase(spUrl, spKey);
-      } else {
-        pieces = JSON.parse(localStorage.getItem('floralia_pieces')) || defaultPieces;
-        renderPortfolio('all');
-      }
+      initSupabase(spUrl, spKey);
 
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.has('admin') || window.location.hash === '#admin') {
@@ -491,17 +480,6 @@
       } catch(e) {
         console.error("Erro ao inicializar Supabase:", e);
       }
-    }
-
-    function saveSupabaseCredentials() {
-      const url = document.getElementById('supabase-url').value.trim().replace(/\/+$/, '');
-      const key = document.getElementById('supabase-key').value.trim();
-      if(!url || !key) { alert("Preencha a URL e a Chave."); return; }
-      localStorage.setItem('floralia_sp_url', url);
-      localStorage.setItem('floralia_sp_key', key);
-      spUrl = url; spKey = key;
-      initSupabase(url, key);
-      alert("Conexão salva com sucesso!");
     }
 
     async function loadPiecesFromSupabase() {
